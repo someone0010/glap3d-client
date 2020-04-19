@@ -267,12 +267,12 @@ class player {
             }
         }
         var composer = new POSTPROCESSING.EffectComposer(renderer);
-        var renderPass = new RenderPass( scene, camera );
+        var renderPass = new POSTPROCESSING.RenderPass( scene, camera );
         composer.addPass( renderPass );
-        composer.addPass(new EffectPass(camera, new BloomEffect()));
+        composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.BloomEffect()));
         let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
         godraysEffect.renderToScreen = true;
-        composer.addPass(godraysEffect);
+        composer.addPass(new POSTPROCESSING.EffectPass(camera,godraysEffect));
         ws.onopen = function (e) {
             ws.send("0");
         }
