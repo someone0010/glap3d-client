@@ -269,13 +269,17 @@ class player {
         var composer = new POSTPROCESSING.EffectComposer(renderer);
         var renderPass = new POSTPROCESSING.RenderPass( scene, camera );
         composer.addPass( renderPass );
-        composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.BloomEffect()));
+        var blme = newcPOSTPROCESSING.BloomEffect();
+        blme.renderToScreen = true:
+        composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
         let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
         godraysEffect.renderToScreen = true;
         composer.addPass(new POSTPROCESSING.EffectPass(camera,godraysEffect));
         // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
-        composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.DepthOfFieldEffect(camera)));
-        log("postprocessing data version 4")
+        var dof1 = new POSTPROCESSING.DepthOfFieldEffect(camera);
+        dof1.renderToScreen = true:
+        composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
+        log("postprocessing data version 5")
         ws.onopen = function (e) {
             ws.send("0");
         }
