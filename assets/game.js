@@ -266,6 +266,8 @@ class player {
                     break;
             }
         }
+
+        try {
         var composer = new POSTPROCESSING.EffectComposer(renderer);
         var renderPass = new POSTPROCESSING.RenderPass( scene, camera );
         composer.addPass( renderPass );
@@ -280,6 +282,8 @@ class player {
         dof1.renderToScreen = true:
         composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
         log("postprocessing data version 5")
+        } catch (e) {
+        alert(e)}
         ws.onopen = function (e) {
             ws.send("0");
         }
