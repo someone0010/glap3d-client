@@ -174,15 +174,15 @@ class player {
         var urnsT = txtl.load(getURLByQuality("assets/urns/urns", qualitySetting));
         var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
 
-        var sunL  = new THREE.MeshBasicMaterial({map: sunT})
-        var mercL = new THREE.MeshLambertMaterial({map: mercT})
-        var vensL = new THREE.MeshLambertMaterial({map: vensT})
-        var erthL = new THREE.MeshLambertMaterial({map: erthT})
-        var marsL = new THREE.MeshLambertMaterial({map: marsT})
-        var juptL = new THREE.MeshLambertMaterial({map: juptT})
-        var strnL = new THREE.MeshLambertMaterial({map: strnT})
-        var urnsL = new THREE.MeshLambertMaterial({map: urnsT})
-        var neptL = new THREE.MeshLambertMaterial({map: neptT})
+        var sunL  = new THREE.MeshBasicMaterial({map: sunT, emissive: 0x222222})
+        var mercL = new THREE.MeshLambertMaterial({map: mercT, emissive: 0x111111})
+        var vensL = new THREE.MeshLambertMaterial({map: vensT, emissive: 0x111111})
+        var erthL = new THREE.MeshLambertMaterial({map: erthT, emissive: 0x111111})
+        var marsL = new THREE.MeshLambertMaterial({map: marsT, emissive: 0x111111})
+        var juptL = new THREE.MeshLambertMaterial({map: juptT, emissive: 0x111111})
+        var strnL = new THREE.MeshLambertMaterial({map: strnT, emissive: 0x111111})
+        var urnsL = new THREE.MeshLambertMaterial({map: urnsT, emissive: 0x111111})
+        var neptL = new THREE.MeshLambertMaterial({map: neptT, emissive: 0x111111})
         /*var sunL = new THREE.MeshBasicMaterial({
             color: 0xff0000
         })
