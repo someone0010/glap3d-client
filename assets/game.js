@@ -164,15 +164,15 @@ class player {
         camera.position.z = 5000;
         window.camera = camera;
 
-        var sunT  = txtl.load(getURLByQuality("./assets/sun/sun", qualitySetting));
-        var mercT = txtl.load(getURLByQuality("./assets/merc/merc", qualitySetting));
-        var vensT = txtl.load(getURLByQuality("./assets/vens/vens", qualitySetting));
-        var erthT = txtl.load(getURLByQuality("./assets/erth/erth", qualitySetting));
-        var marsT = txtl.load(getURLByQuality("./assets/mars/mars", qualitySetting));
-        var juptT = txtl.load(getURLByQuality("./assets/jupt/jupt", qualitySetting));
-        var strnT = txtl.load(getURLByQuality("./assets/strn/strn", qualitySetting));
-        var urnsT = txtl.load(getURLByQuality("./assets/urns/urns", qualitySetting));
-        var neptT = txtl.load(getURLByQuality("./assets/nept/nept", qualitySetting));
+        var sunT  = txtl.load(getURLByQuality("assets/sun/sun", qualitySetting));
+        var mercT = txtl.load(getURLByQuality("assets/merc/merc", qualitySetting));
+        var vensT = txtl.load(getURLByQuality("assets/vens/vens", qualitySetting));
+        var erthT = txtl.load(getURLByQuality("assets/erth/erth", qualitySetting));
+        var marsT = txtl.load(getURLByQuality("assets/mars/mars", qualitySetting));
+        var juptT = txtl.load(getURLByQuality("assets/jupt/jupt", qualitySetting));
+        var strnT = txtl.load(getURLByQuality("assets/strn/strn", qualitySetting));
+        var urnsT = txtl.load(getURLByQuality("assets/urns/urns", qualitySetting));
+        var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
 
         var sunL  = new THREE.MeshBasicMaterial({map: sunT})
         var mercL = new THREE.MeshLambertMaterial({map: mercT})
