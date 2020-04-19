@@ -237,6 +237,13 @@ class player {
             scene.add(e);
         })
         scene.add(alight);
+        
+        var skySphereG = new THREE.SphereBufferGeometry(100000, 256, 256);
+        var skySphereT = txtl.load("assets/starfield_2k.jpg");
+        var skySphereL = new THREE.MeshBasicMaterial({map: skySphereT});
+        skySphereL.side = THREE.BackSide;
+        var skySphereM = new THREE.Mesh(skySphereG, skySphereL);
+        scene.add(skySphereM);
         ws.onmessage = function (e) {
             var json = JSON.parse(e.data);
             switch (json[0]) {
