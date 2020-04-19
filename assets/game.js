@@ -175,14 +175,14 @@ class player {
         var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
 
         var sunL  = new THREE.MeshBasicMaterial({map: sunT, emissive: 0x222222})
-        var mercL = new THREE.MeshLambertMaterial({map: mercT, emissive: 0x111111})
-        var vensL = new THREE.MeshLambertMaterial({map: vensT, emissive: 0x111111})
-        var erthL = new THREE.MeshLambertMaterial({map: erthT, emissive: 0x111111})
-        var marsL = new THREE.MeshLambertMaterial({map: marsT, emissive: 0x111111})
-        var juptL = new THREE.MeshLambertMaterial({map: juptT, emissive: 0x111111})
-        var strnL = new THREE.MeshLambertMaterial({map: strnT, emissive: 0x111111})
-        var urnsL = new THREE.MeshLambertMaterial({map: urnsT, emissive: 0x111111})
-        var neptL = new THREE.MeshLambertMaterial({map: neptT, emissive: 0x111111})
+        var mercL = new THREE.MeshLambertMaterial({map: mercT, emissiveMap: mercT, emissive: 0x111111})
+        var vensL = new THREE.MeshLambertMaterial({map: vensT, emissiveMap: vensT, emissive: 0x111111})
+        var erthL = new THREE.MeshLambertMaterial({map: erthT, emissiveMap: erthT, emissive: 0x111111})
+        var marsL = new THREE.MeshLambertMaterial({map: marsT, emissiveMap: marsT, emissive: 0x111111})
+        var juptL = new THREE.MeshLambertMaterial({map: juptT, emissiveMap: juptT, emissive: 0x111111})
+        var strnL = new THREE.MeshLambertMaterial({map: strnT, emissiveMap: strnT, emissive: 0x111111})
+        var urnsL = new THREE.MeshLambertMaterial({map: urnsT, emissiveMap: urnsT, emissive: 0x111111})
+        var neptL = new THREE.MeshLambertMaterial({map: neptT, emissiveMap: neptT, emissive: 0x111111})
         /*var sunL = new THREE.MeshBasicMaterial({
             color: 0xff0000
         })
