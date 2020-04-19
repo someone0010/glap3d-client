@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glap3D</title>
+    <script src="./assets/libs/three.min.js"></script>
+    
+    <style>
+        @import url("./assets/LilitaOne-Regular.ttf");
+        @font-face {
+            font-family: "Lilita One";
+            src: url("./assets/LilitaOne-Regular.ttf");
+        }
+        #game-log {
+            position: absolute;
+            margin: 80px;
+            background-color: transparent;
+            color: white;
+        }
+        @keyframes fadetext {
+            0% {
+                background-color: transparent;
+                opacity: 1;
+                display: block;
+                transform: translate(50vw, 50vh)
+            }
+            2% {
+                transform: initial;
+            }
+            80% {
+                opacity: 1;
+                display: block;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+        body {
+            margin: 0;
+            font-family: "Lilita One";
+            color: white;
+            font-weight: 100;
+            font-size: 18px;
+        }
+        canvas {
+            size: 100%;
+            display: block;
+        }
+        .gameLogText {
+            animation-name: fadetext;
+            animation-duration: 10s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            white-space: nowrap;
+            background-color: transparent;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-log"></div>
+    <script src="./assets/game.js"></script>
+</body>
+</html>
