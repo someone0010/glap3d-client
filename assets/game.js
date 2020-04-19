@@ -106,7 +106,7 @@ class player {
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
         setInterval(this.everysecond, 1000);
         var renderer = new THREE.WebGLRenderer({
-            logarithmicZBuffer: true,
+            logarithmicDepthBuffer: true,
             antialias: true
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
