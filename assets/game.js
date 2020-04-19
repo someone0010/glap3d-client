@@ -103,7 +103,7 @@ class player {
         }
 
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200000);
+        var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
         setInterval(this.everysecond, 1000);
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
@@ -239,7 +239,7 @@ class player {
         })
         scene.add(alight);
         
-        var skySphereG = new THREE.SphereBufferGeometry(80000, 256, 256);
+        var skySphereG = new THREE.SphereBufferGeometry(160000, 256, 256);
         var skySphereT = txtl.load("assets/starfield_8k.jpg");
         var skySphereL = new THREE.MeshBasicMaterial({map: skySphereT});
         skySphereL.side = THREE.BackSide;
