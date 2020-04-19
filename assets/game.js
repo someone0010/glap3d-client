@@ -266,13 +266,20 @@ class player {
                     break;
             }
         }
+        var composer = new POSTPROCESSING.EffectComposer(renderer);
+        var renderPass = new RenderPass( scene, camera );
+        composer.addPass( renderPass );
+        composer.addPass(new EffectPass(camera, new BloomEffect()));
+        let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
+        godraysEffect.renderToScreen = true;
+        composer.addPass(godraysEffect);
         ws.onopen = function (e) {
             ws.send("0");
         }
 
         function animate() {
             requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+            composer.render();
         }
         animate();
         window.planets = planets;
