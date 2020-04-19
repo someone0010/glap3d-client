@@ -239,7 +239,7 @@ class player {
         scene.add(alight);
         
         var skySphereG = new THREE.SphereBufferGeometry(100000, 256, 256);
-        var skySphereT = txtl.load("assets/starfield_2k.jpg");
+        var skySphereT = txtl.load("assets/starfield_8k.jpg");
         var skySphereL = new THREE.MeshBasicMaterial({map: skySphereT});
         skySphereL.side = THREE.BackSide;
         var skySphereM = new THREE.Mesh(skySphereG, skySphereL);
