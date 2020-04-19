@@ -275,6 +275,7 @@ class player {
         composer.addPass(new POSTPROCESSING.EffectPass(camera,godraysEffect));
         // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
         composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.DepthOfFieldEffect(camera)));
+        log("postprocessing data version 4")
         ws.onopen = function (e) {
             ws.send("0");
         }
