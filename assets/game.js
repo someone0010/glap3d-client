@@ -231,7 +231,7 @@ class player {
         planets.push(urnsM);
         planets.push(neptM);
 
-        var alight = new THREE.AmbientLight(0xffffff, 2);
+        var alight = new THREE.AmbientLight(0xffffff, 1.1);
 
         planets.forEach(e => {
             scene.add(e);
