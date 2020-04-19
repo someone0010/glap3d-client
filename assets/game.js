@@ -269,7 +269,7 @@ class player {
         var composer = new POSTPROCESSING.EffectComposer(renderer);
         var renderPass = new POSTPROCESSING.RenderPass( scene, camera );
         composer.addPass( renderPass );
-        var blme = newcPOSTPROCESSING.BloomEffect();
+        var blme = new POSTPROCESSING.BloomEffect();
         blme.renderToScreen = true:
         composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
         let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
