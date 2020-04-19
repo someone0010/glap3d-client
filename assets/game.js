@@ -231,9 +231,12 @@ class player {
         planets.push(urnsM);
         planets.push(neptM);
 
+        var alight = new THREE.AmbientLight(0xffffff, 10);
+
         planets.forEach(e => {
             scene.add(e);
         })
+        scene.add(alight);
         ws.onmessage = function (e) {
             var json = JSON.parse(e.data);
             switch (json[0]) {
