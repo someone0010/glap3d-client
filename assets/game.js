@@ -107,7 +107,8 @@ class player {
         setInterval(this.everysecond, 1000);
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
-            antialias: true
+            antialias: true,
+            powerPreference: "high-performance"
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement)
