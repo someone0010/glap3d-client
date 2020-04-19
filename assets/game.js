@@ -161,7 +161,7 @@ class player {
         var txtl = new THREE.TextureLoader();
 
         log("Loading planet textures..")
-        camera.position.x = 30000;
+        camera.position.z = 30000;
         window.camera = camera;
 
         var sunT  = txtl.load(getURLByQuality("assets/sun/sun", qualitySetting));
