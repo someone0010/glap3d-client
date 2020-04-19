@@ -146,15 +146,15 @@ class player {
         function getURLByQuality(base, quality) {
             switch (quality) {
                 case "lowest":
-                    return base + "_512.jpg";
+                    return base + "_512.png";
                 case "low":
-                    return base + "_1k.jpg";
+                    return base + "_1k.png";
                 case "medium":
-                    return base + "_2k.jpg";
+                    return base + "_2k.png";
                 case "high":
-                    return base + "_4k.jpg";
+                    return base + "_4k.png";
                 case "ultra":
-                    return base + "_8k.jpg";
+                    return base + "_8k.png";
             }
         }
 
