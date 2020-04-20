@@ -279,10 +279,13 @@ class player {
                                     f.quaternion.w = e.qw;
                                 if (e.t == 0) {
                                     if (e.n == myinstance) {
+                                        if (f.children.length == 0) {
                                         camera.position.x = e.x + 5,
                                         camera.position.y = e.y + 2,
                                         camera.position.z = e.z,
                                         camera.quaternion.set(e.qx, e.qy, e.qz, e.qw);
+                                        f.add(camera);
+                                        }
                                     }
                                 }
                             }
