@@ -289,7 +289,6 @@ class player {
                                         
                                         var euler = f.rotation;
                                         camera.position.x = (Math.sin(euler.y) * 10) + e.x;
-                                        console.log(Math.sin(euler.y) + " " + Math.cos(euler.y) + " " + euler.y);
                                         camera.position.z = (Math.cos(euler.y) * 10) + e.z;
                                         camera.lookAt(f.position);
                                     }
@@ -335,6 +334,7 @@ class player {
                     bestvelocity = Math.max(bestvelocity, json[3]);
                     powerbar.style.width = "" + (json[1]/json[2]*100) + "%";
                     velocitybar.style.width = "" + (json[3]/bestvelocity*100) + "%";
+                    break;
             }
         }
 
