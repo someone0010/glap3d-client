@@ -271,7 +271,7 @@ class player {
                     })
                     json[2].forEach((e) => {
                         scene.children.forEach(f => {
-                            if (f.userData.instance == e.n) {
+                            if (f.userData.id == e.i) {
                                 f.position.x = e.x,
                                     f.position.y = e.y,
                                     f.position.z = e.z,
