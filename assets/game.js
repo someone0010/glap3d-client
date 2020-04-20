@@ -200,9 +200,22 @@ class player {
         ws.onclose = function (e) {
             log("Disconnected: " + e.code);
         }
+        var allowed = true;
 
         document.addEventListener("keydown", function(e) {
             log(e.keyCode + " " + e.which);
+            if (e.repeat != undefined) {
+                allowed = !e.repeat;
+            }
+            if (!allowed) return;
+            allowed = false;
+        })
+        document.addEventListener("keyup", function(e) {
+            log(e.keyCode + " " + e.which);
+            allowed = true;
+        })
+        document.addEventListener("focus", function() {
+            allowed = true;
         })
         
         ws.onmessage = function (e) {
