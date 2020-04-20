@@ -116,7 +116,7 @@ canvas {
 }
 
 .alwaysfull {
-    width: 100%;
+    width: 100% !important;
 }
 
 #pitch, #yaw, #roll {
@@ -127,5 +127,5 @@ canvas {
     background-color: rgb(99, 99, 99);
 }
 .small {
-    width: 10vw;
+    width: 10vw !important;
 }
