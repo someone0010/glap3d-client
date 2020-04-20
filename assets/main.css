@@ -61,6 +61,7 @@
 
   line-height: 30px;
   color: white;
+  float: left;
 }
 
 .progressBar {
