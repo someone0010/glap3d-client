@@ -73,7 +73,7 @@
 .progressBarText {
 	position:absolute;
     z-index: 100;
-    transform: skewX(10deg)/* translate(-50%, 0)*/;
+    transform: skewX(10deg)translate(50%, 0);
 }
 .progressBarContainer {
 	position: absolute;
