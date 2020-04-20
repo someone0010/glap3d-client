@@ -2,6 +2,11 @@ var logger = document.getElementById("game-log");
 var stats = document.getElementById("stats");
 var serverUrl = "ws://127.0.0.1:3000";
 
+var powertext = document.getElementById("power_state"),
+    powerbar =  document.getElementById("powerBar"),
+    velocitytext = document.getElementById("velocity_state"),
+    velocitybar =  document.getElementById("velocityBar")
+
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
         logger.lastChild.textContent = logger.lastChild.textContent + " (x2)"
@@ -238,6 +243,7 @@ class player {
         ws.onclose = function (e) {
             log("Disconnected: " + e.code);
         }
+        var bestvelocity = 0;
         var activekeys = [];
         document.addEventListener("keydown", function (e) {
             if (activekeys[e.keyCode] == true) return;
@@ -320,6 +326,15 @@ class player {
                         }
                     })
                     break;
+                case 5:
+                    // reserved for chat
+                    break;
+                case 6:
+                    powertext.innerText = "POWER: "+json[1]+"/"+json[2]
+                    velocitytext.innerText = json[3];
+                    bestvelocity = Math.max(bestvelocity, json[3]);
+                    powerbar.style.width = "" + (json[2]/json[1]*100) + "%";
+                    velocitybar.style.width = "" + (bestvelocity/json[3]*100) + "%";
             }
         }
 
