@@ -169,9 +169,13 @@ class player {
             emissiveMap: vensT,
             emissive: 0x111111
         })
+        var erthTNOR = txtl.load("assets/erth/earth_nor.png");
+        var erthTAO = txtl.load("assets/erth/earth_ao.png");
         var erthL = new THREE.MeshLambertMaterial({
             map: erthT,
             emissiveMap: erthT,
+            norMap: erthTNOR,
+            aoMap: erthTAO,
             emissive: 0x111111
         })
         var marsL = new THREE.MeshLambertMaterial({
