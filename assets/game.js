@@ -283,8 +283,9 @@ class player {
                                         
                                         var euler = new THREE.Euler().setFromQuaternion(f.quaternion);
                                         console.log(euler);
-                                        camera.position.x = Math.sin(euler.y) * 10 + e.x;
-                                        camera.position.z = Math.cos(euler.y) * 10 + e.z;
+                                        var degY = euler.y * (180/Math.PI);
+                                        camera.position.x = Math.sin(degY) * 10 + e.x;
+                                        camera.position.z = Math.cos(degY) * 10 + e.z;
                                         camera.lookAt(f.position);
                                     }
                                 }
