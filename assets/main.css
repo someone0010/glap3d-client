@@ -73,7 +73,7 @@
 .progressBarText {
 	position:absolute;
     z-index: 100;
-    transform: skewX(10deg) translate(33%, 0);
+    transform: skewX(10deg) translate(-50%, 0);
 }
 .progressBarContainer {
 	position: absolute;
@@ -82,4 +82,23 @@
     margin: 0 auto;
     bottom:5px;
     transform: translate(-50%, -50%);
+}
+
+#power {
+    background-color: rgb(18, 67, 95);
+	border: 2px solid  rgb(0, 95, 147);
+}
+
+#velocity {
+	background-color: rgb(69, 4, 99);
+	border: 2px solid rgb(95, 3, 138);
+}
+
+#powerBar {
+	background-color: rgb(16, 125, 184);
+	
+}
+
+#velocityBar {
+	background-color: rgb(150, 17, 212);
 }
