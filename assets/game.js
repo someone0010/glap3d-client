@@ -314,7 +314,7 @@ class player {
                         default:
                             geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
                             
-                            material = new THREE.MeshLambertMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222,color:0x222222});
+                            material = new THREE.MeshLambertMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222});
                     }
                     var mesh = new THREE.Mesh(geometry, material);
                     mesh.userData.id = obj.i;
