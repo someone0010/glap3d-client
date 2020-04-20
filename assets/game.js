@@ -72,7 +72,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 30")
+        log("Game.js version 31")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -254,6 +254,7 @@ class player {
         ws.onmessage = function (e) {
             //glThis.dataPool += e.data.length;
             var json = JSON.parse(e.data);
+            console.log(json);
             switch (json[0]) {
                 case 0:
                     log("got message");
