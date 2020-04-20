@@ -286,7 +286,7 @@ class player {
                                         
                                         camera.position.x = Math.sin(euler.y) * 10 + e.x;
                                         camera.position.z = -Math.cos(euler.y) * 10 + e.z;
-                                        camera.lookAt(f);
+                                        camera.lookAt(f.position);
                                     }
                                 }
                             }
