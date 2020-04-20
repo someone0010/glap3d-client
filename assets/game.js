@@ -72,7 +72,6 @@ class player {
     }
 
     init() {
-        log("Game.js version 27");
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -300,6 +299,10 @@ class player {
                             material = new THREE.MeshLambertMaterial({color: 0x00ff00});
                     }
                     var mesh = new THREE.Mesh(geometry, material);
+                    mesh.userData.id = obj.i;
+                    if (obj.t == 0) {
+                        mesh.userData.instance = obj.n;
+                    }
                     scene.add(mesh);
                     break;
             }
