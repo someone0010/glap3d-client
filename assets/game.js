@@ -5,7 +5,10 @@ var serverUrl = "ws://127.0.0.1:3000";
 var powertext = document.getElementById("power_state"),
     powerbar =  document.getElementById("powerBar"),
     velocitytext = document.getElementById("velocity_state"),
-    velocitybar =  document.getElementById("velocityBar")
+    velocitybar =  document.getElementById("velocityBar"),
+    pitchtext = document.getElementById("pitch_state"),
+    yawtext = document.getElementById("yaw_state"),
+    rolltext = document.getElementById("roll_state")
 
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
@@ -287,10 +290,14 @@ class player {
                                     if (e.n == myinstance) {
                                         camera.position.y = e.y + 2;
                                         
-                                        var euler = f.rotation;
-                                        camera.position.x = (Math.sin(euler.y) * 10) + e.x;
-                                        camera.position.z = (Math.cos(euler.y) * 10) + e.z;
+                                        
+                                        camera.position.x = (Math.sin(f.rotation.y) * 10) + e.x;
+                                        camera.position.z = (Math.cos(f.rotation.y) * 10) + e.z;
+                                        pitchtext.innerText = "PITCH: " + (f.rotation.x * (180/Math.PI)).toFixed(2);
+                                        yawtext.innerText = "YAW: " + (f.rotation.y * (180/Math.PI)).toFixed(2);
+                                        rolltext.innerText = "ROLL: " + (f.rotation.z * (180/Math.PI)).toFixed(2);
                                         camera.lookAt(f.position);
+                                        
                                     }
                                 }
                             }
