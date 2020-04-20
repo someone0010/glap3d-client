@@ -310,10 +310,10 @@ class player {
                     scene.add(mesh);
                     break;
                 case 3:
-                    log("<span color='gold'>" + json[1].n" joined the game</span>");
+                    log("<span color='gold'>" + json[1].n + " joined the game</span>");
                     break;
                 case 4:
-                    log("<span color='gold'>" + json[1].n" left the game</span>");
+                    log("<span color='gold'>" + json[1].n + " left the game</span>");
                     scene.children.forEach((e,i)=>{
                         if (e.userData.instance == json[1].i || e.userData.owner == json[1].i) {
                             scene.remove(scene.children[i]);
