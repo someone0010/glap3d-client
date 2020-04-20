@@ -279,7 +279,7 @@ class player {
         composer.addPass(new POSTPROCESSING.EffectPass(camera,godraysEffect));
         // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
         var dof1 = new POSTPROCESSING.DepthOfFieldEffect(camera);
-        dof1.renderToScreen = true:
+        dof1.renderToScreen = true;
         composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
         log("postprocessing data version 5")
         } catch (e) {
