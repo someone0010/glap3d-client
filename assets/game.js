@@ -245,7 +245,9 @@ class player {
         skySphereL.side = THREE.BackSide;
         var skySphereM = new THREE.Mesh(skySphereG, skySphereL);
         scene.add(skySphereM);
+        
         ws.onmessage = function (e) {
+            //glThis.dataPool += e.data.length;
             var json = JSON.parse(e.data);
             switch (json[0]) {
                 case 0:
@@ -253,7 +255,7 @@ class player {
 
                     break;
                 case 1:
-                    json.forEach((e, i) => {
+                    json[1].forEach((e, i) => {
                         if (i == 0) return;
                         try {
                             planets[e.c].position.x = e.x;
@@ -262,7 +264,9 @@ class player {
 
                         }
                     })
-
+                    json[2].forEach((e)=>{
+                          
+                    })
                     break;
             }
         }
