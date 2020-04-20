@@ -123,7 +123,7 @@ canvas {
     border: 2px solid rgb(115, 115, 115);
     background-color: rgb(74, 74, 74);
 }
-#pitchBar, #yawBar, #rollBar {
+.angle {
     background-color: rgb(99, 99, 99);
 }
 .small {
