@@ -56,26 +56,6 @@ class player {
     constructor() {
 
     }
-    maps = [{
-        "name": "Test",
-        "version": "0.0.1a",
-        "id": 0,
-        "objects": [{
-            "g": 0,
-            "q": [0, 0, 0, 1],
-            "p": [0, -20, 0],
-            "s": [10, 10, 10],
-            "t": {
-                "dif": null,
-                "nor": null,
-                "ao": null,
-                "col": 0x00ee00,
-                "emi": 0x333333,
-                "emim": null,
-                "spc": null
-            }
-        }]
-    }]
     drawtext3d(text2d, material, cssStyle) {
         var canvas = document.createElement('canvas'),
             ctx = canvas.getContext('2d');
@@ -122,17 +102,8 @@ class player {
 
         }
         window.addEventListener('resize', onWindowResize, false);
-        var ws = new WebSocket(serverUrl);
-        window.warws = ws;
+        
         var qualitySetting = "medium";
-        ws.onerror = function (err) {
-            log("Connection error: " + err);
-            log("Current WS state: " + ws.readyState)
-        }
-        ws.onclose = function (e) {
-            log("Disconnected: " + e.code);
-        }
-
         var planets = [];
         var sunG = new THREE.SphereBufferGeometry(10000, 64, 64);
         var mercG = new THREE.SphereBufferGeometry(100, 64, 64);
@@ -184,34 +155,7 @@ class player {
         var strnL = new THREE.MeshLambertMaterial({map: strnT, emissiveMap: strnT, emissive: 0x111111})
         var urnsL = new THREE.MeshLambertMaterial({map: urnsT, emissiveMap: urnsT, emissive: 0x111111})
         var neptL = new THREE.MeshLambertMaterial({map: neptT, emissiveMap: neptT, emissive: 0x111111})
-        /*var sunL = new THREE.MeshBasicMaterial({
-            color: 0xff0000
-        })
-        var mercL = new THREE.MeshBasicMaterial({
-            color: 0x00ff00
-        })
-        var vensL = new THREE.MeshBasicMaterial({
-            color: 0x0000ff
-        })
-        var erthL = new THREE.MeshBasicMaterial({
-            color: 0xffff00
-        })
-        var marsL = new THREE.MeshBasicMaterial({
-            color: 0xff00ff
-        })
-        var juptL = new THREE.MeshBasicMaterial({
-            color: 0x00ffff
-        })
-        var strnL = new THREE.MeshBasicMaterial({
-            color: 0x000000
-        })
-        var urnsL = new THREE.MeshBasicMaterial({
-            color: 0xffffff
-        })
-        var neptL = new THREE.MeshBasicMaterial({
-            color: 0x333333
-        })*/
-
+        
         var sunM = new THREE.Mesh(sunG, sunL);
         var mercM = new THREE.Mesh(mercG, mercL);
         var vensM = new THREE.Mesh(vensG, vensL);
@@ -245,6 +189,21 @@ class player {
         skySphereL.side = THREE.BackSide;
         var skySphereM = new THREE.Mesh(skySphereG, skySphereL);
         scene.add(skySphereM);
+        
+        var ws = new WebSocket(serverUrl);
+        window.warws = ws;
+        
+        ws.onerror = function (err) {
+            log("Connection error: " + err);
+            log("Current WS state: " + ws.readyState)
+        }
+        ws.onclose = function (e) {
+            log("Disconnected: " + e.code);
+        }
+
+        document.addEventListener("keydown", function(e) {
+            log(e.keyCode + " " + e.which);
+        })
         
         ws.onmessage = function (e) {
             //glThis.dataPool += e.data.length;
@@ -289,7 +248,7 @@ class player {
         } catch (e) {
         alert(e)}
         ws.onopen = function (e) {
-            ws.send("0");
+            ws.send("0testing1111");
         }
 
         function animate() {
