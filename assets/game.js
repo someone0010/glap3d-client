@@ -77,7 +77,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 41")
+        log("Game.js version 44")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -330,7 +330,7 @@ class player {
                     // reserved for chat
                     break;
                 case 6:
-                    powertext.innerText = "POWER: "+json[1]+"/"+json[2]
+                    powertext.innerText = "POWER: "+Math.floor(json[1])+"/"+json[2]
                     velocitytext.innerText = json[3];
                     bestvelocity = Math.max(bestvelocity, json[3]);
                     powerbar.style.width = "" + (json[2]/json[1]*100) + "%";
