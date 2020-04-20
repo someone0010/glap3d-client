@@ -72,7 +72,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 31")
+        log("Game.js version 29")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -243,18 +243,17 @@ class player {
             if (activekeys[e.keyCode] == true) return;
             log(e.keyCode);
             activekeys[e.keyCode] = true;
-            ws.send(JSON.stringify([0,e.keyCode,true]))
+            ws.send(JSON.stringify([0,e.key,true]))
         })
         document.addEventListener("keyup", function (e) {
             log(e.keyCode);
             activekeys[e.keyCode] = false;
-            ws.send(JSON.stringify([0,e.keyCode,false]))
+            ws.send(JSON.stringify([0,e.key,false]))
         })
         var myinstance = 0;
         ws.onmessage = function (e) {
             //glThis.dataPool += e.data.length;
             var json = JSON.parse(e.data);
-            console.log(json);
             switch (json[0]) {
                 case 0:
                     log("got message");
@@ -273,7 +272,6 @@ class player {
                     json[2].forEach((e) => {
                         scene.children.forEach(f => {
                             if (f.userData.id == e.i) {
-                                console.log("updating meshes");
                                 f.position.x = e.x,
                                     f.position.y = e.y,
                                     f.position.z = e.z,
@@ -299,7 +297,6 @@ class player {
                     var material;
                     switch (obj.t) {
                         default:
-                            console.log("created player")
                             geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
                             material = new THREE.MeshLambertMaterial({color: 0x00ff00});
                     }
