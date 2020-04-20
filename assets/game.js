@@ -284,7 +284,7 @@ class player {
                                         camera.position.x = e.x + 5,
                                         camera.position.y = e.y + 2,
                                         camera.position.z = e.z,
-                                        camera.quaternion = new THREE.Quaternion(e.qx, e.qy, e.qz, e.qw);
+                                        camera.quaternion.set(e.qx, e.qy, e.qz, e.qw);
                                     }
                                 }
                             }
