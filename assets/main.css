@@ -83,7 +83,9 @@ canvas {
 .progressBarText {
     position: absolute;
     z-index: 100;
-    transform: skewX(10deg) translate(100%, 0);
+    transform: skewX(10deg);
+    width: 100%;
+    text-align: center;
 }
 
 .progressBarContainer {
