@@ -281,7 +281,7 @@ class player {
                                     if (e.n == myinstance) {
                                         camera.position.y = e.y + 2;
                                         
-                                        var euler = f.rotation;
+                                        var euler = f.rotation.normalize();
                                         var degY = euler.y * (180/Math.PI);
                                         camera.position.x = (Math.sin(euler.y) * 10) + e.x;
                                         console.log(Math.sin(euler.y) + " " + Math.cos(euler.y) + " " + euler.y);
