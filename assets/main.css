@@ -52,3 +52,33 @@
         .game-menu {
             transform: translate(50%, 50%);
         }
+.progress {
+  width: 15vw;
+  background-color: grey;
+  transform: skewX(-10deg);
+  background-color: #144b69;
+  border: 2px solid #0069a3;
+
+  line-height: 30px;
+  color: white;
+}
+
+.progressBar {
+  width: 60%;
+  height: 30px;
+  background-color: #128bcc;
+  
+}
+.progressBarText {
+	position:absolute;
+    z-index: 100;
+    transform: skewX(10deg) translate(33%, 0);
+}
+.progressBarContainer {
+	position: absolute;
+    z-index: 200;
+    left:50%;
+    margin: 0 auto;
+    bottom:5px;
+    transform: translate(-50%, -50%);
+}
