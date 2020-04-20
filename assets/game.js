@@ -200,22 +200,16 @@ class player {
         ws.onclose = function (e) {
             log("Disconnected: " + e.code);
         }
-        var allowed = true;
-
+        var activekeys = [];
         document.addEventListener("keydown", function(e) {
-            log(e.keyCode + " " + e.which);
-            if (e.repeat != undefined) {
-                allowed = !e.repeat;
-            }
-            if (!allowed) return;
-            allowed = false;
+            if (activekeys[e.keyCode] == true) return;
+            log(e.keyCode);
+            activekeys[e.keyCode] = true;
+            
         })
         document.addEventListener("keyup", function(e) {
-            log(e.keyCode + " " + e.which);
-            allowed = true;
-        })
-        document.addEventListener("focus", function() {
-            allowed = true;
+            log(e.keyCode);
+            activekeys[e.keyCode] = false;
         })
         
         ws.onmessage = function (e) {
