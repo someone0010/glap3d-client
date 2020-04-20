@@ -114,3 +114,18 @@ canvas {
 #velocityBar {
     background-color: rgb(150, 17, 212);
 }
+
+.alwaysfull {
+    width: 100%;
+}
+
+#pitch, #yaw, #roll {
+    border: 2px solid rgb(115, 115, 115);
+    background-color: rgb(74, 74, 74);
+}
+#pitchBar, #yawBar, #rollBar {
+    background-color: rgb(99, 99, 99);
+}
+.small {
+    width: 10vw;
+}
