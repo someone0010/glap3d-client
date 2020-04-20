@@ -72,6 +72,7 @@ class player {
     }
 
     init() {
+        log("Game.js version 27");
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
