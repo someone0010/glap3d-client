@@ -331,10 +331,10 @@ class player {
                     break;
                 case 6:
                     powertext.innerText = "POWER: "+Math.floor(json[1])+"/"+json[2]
-                    velocitytext.innerText = json[3];
+                    velocitytext.innerText = "VELOCITY: " + json[3];
                     bestvelocity = Math.max(bestvelocity, json[3]);
-                    powerbar.style.width = "" + (json[2]/json[1]*100) + "%";
-                    velocitybar.style.width = "" + (bestvelocity/json[3]*100) + "%";
+                    powerbar.style.width = "" + (json[1]/json[2]*100) + "%";
+                    velocitybar.style.width = "" + (json[3]/bestvelocity*100) + "%";
             }
         }
 
