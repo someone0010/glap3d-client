@@ -283,7 +283,9 @@ class player {
                                         camera.position.y = e.y + 2,
                                         camera.position.z = e.z,
                                         camera.quaternion.set(e.qx, e.qy, e.qz, e.qw);
-                                        camera.lookAt(f);
+                                        var euler = new THREE.Euler().setFromQuaternion(new THREE.Quaternion(e.qx, e.qy, e.qz, e.qw));
+                                        camera.position.x = Math.sin(euler.y) * 10 + f.position.x;
+                                        camera.position.z = Math.cos(euler.y) * 10 + f.position.y;
                                     }
                                 }
                             }
