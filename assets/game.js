@@ -72,7 +72,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 29")
+        log("Game.js version 41")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -282,6 +282,8 @@ class player {
                                         camera.position.y = e.y + 2;
                                         
                                         var euler = new THREE.Euler().setFromQuaternion(new THREE.Quaternion(e.qx, e.qy, e.qz, e.qw));
+                                        console.log(f);
+                                        
                                         camera.position.x = Math.sin(euler.y) * 10 + e.x;
                                         camera.position.z = -Math.cos(euler.y) * 10 + e.z;
                                         camera.lookAt(f);
