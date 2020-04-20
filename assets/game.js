@@ -236,6 +236,8 @@ class player {
         var skySphereM = new THREE.Mesh(skySphereG, skySphereL);
         scene.add(skySphereM);
 
+        var liveModuleT = txtl.load("assets/modules/heart.png");
+        
         var ws = new WebSocket(serverUrl);
         window.warws = ws;
 
@@ -311,7 +313,8 @@ class player {
                     switch (obj.t) {
                         default:
                             geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
-                            material = new THREE.MeshLambertMaterial({color: 0x00ff00});
+                            
+                            material = new THREE.MeshLambertMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222,color:0x222222});
                     }
                     var mesh = new THREE.Mesh(geometry, material);
                     mesh.userData.id = obj.i;
