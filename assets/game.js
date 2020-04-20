@@ -306,6 +306,7 @@ class player {
                     if (obj.t == 0) {
                         mesh.userData.instance = obj.n;
                     }
+                    mesh.rotation.order = "YXZ";
                     scene.add(mesh);
                     break;
             }
