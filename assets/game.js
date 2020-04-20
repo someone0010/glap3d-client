@@ -280,10 +280,11 @@ class player {
                                 if (e.t == 0) {
                                     if (e.n == myinstance) {
                                         camera.position.y = e.y + 2,
-                                        camera.quaternion.set(e.qx, e.qy, e.qz, e.qw);
+                                        
                                         var euler = new THREE.Euler().setFromQuaternion(new THREE.Quaternion(e.qx, e.qy, e.qz, e.qw));
                                         camera.position.x = Math.sin(euler.y) * 10 + e.x;
                                         camera.position.z = -Math.cos(euler.y) * 10 + e.z;
+                                        camera.lookAt(f);
                                     }
                                 }
                             }
