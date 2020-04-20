@@ -72,7 +72,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 29")
+        log("Game.js version 30")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -272,6 +272,7 @@ class player {
                     json[2].forEach((e) => {
                         scene.children.forEach(f => {
                             if (f.userData.id == e.i) {
+                                console.log("updating meshes");
                                 f.position.x = e.x,
                                     f.position.y = e.y,
                                     f.position.z = e.z,
@@ -297,6 +298,7 @@ class player {
                     var material;
                     switch (obj.t) {
                         default:
+                            console.log("created player")
                             geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
                             material = new THREE.MeshLambertMaterial({color: 0x00ff00});
                     }
