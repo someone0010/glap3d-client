@@ -241,12 +241,10 @@ class player {
         var activekeys = [];
         document.addEventListener("keydown", function (e) {
             if (activekeys[e.keyCode] == true) return;
-            log(e.keyCode);
             activekeys[e.keyCode] = true;
             ws.send(JSON.stringify([0,e.key,true]))
         })
         document.addEventListener("keyup", function (e) {
-            log(e.keyCode);
             activekeys[e.keyCode] = false;
             ws.send(JSON.stringify([0,e.key,false]))
         })
