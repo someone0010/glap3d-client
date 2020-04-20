@@ -281,10 +281,10 @@ class player {
                                     if (e.n == myinstance) {
                                         camera.position.y = e.y + 2;
                                         
-                                        var euler = f.rotation*2;
+                                        var euler = f.rotation;
                                         camera.position.x = (Math.sin(euler.y) * 10) + e.x;
                                         console.log(Math.sin(euler.y) + " " + Math.cos(euler.y) + " " + euler.y);
-                                        camera.position.z = (Math.sin(euler.y-1.57079633) * 10) + e.z;
+                                        camera.position.z = (Math.cos(euler.y) * 10) + e.z;
                                         camera.lookAt(f.position);
                                     }
                                 }
