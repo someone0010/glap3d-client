@@ -10,7 +10,7 @@ var powertext = document.getElementById("power_state"),
     yawtext = document.getElementById("yaw_state"),
     rolltext = document.getElementById("roll_state");
 var playerTextName = document.getElementById("playername"),
-    joinButton - document.getElementById("join-button");
+    joinButton = document.getElementById("join-button");
 
     joinButton.disabled = true;
 function log(text) {
