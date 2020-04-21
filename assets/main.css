@@ -86,6 +86,8 @@ canvas {
     transform: skewX(10deg);
     width: 100%;
     text-align: center;
+	user-select: none; 
+	-webkit-user-select: none;
 }
 
 .progressBarContainer {
