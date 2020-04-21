@@ -181,7 +181,7 @@ function onMouseMove( event ) {
 
     euler.x = Math.max( - PI_2, Math.min( PI_2, euler.x ) );
     camera.quaternion.setFromEuler( euler );
-    ws.send(JSON.stringify([4,camera.rotation.x,camera.rotation.y]));
+    ws.send(JSON.stringify([4,euler.x,euler.y]));
 }
 
 function onPointerlockChange() {
@@ -311,7 +311,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             activekeys[e.keyCode] = false;
             ws.send(JSON.stringify([0,e.key,false]))
         })
-        
+        var eu = new THREE.Euler(0,0,0,"YXZ");
         ws.onmessage = function (e) {
             
             dataPool += e.data.length;
