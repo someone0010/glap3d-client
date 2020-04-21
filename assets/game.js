@@ -378,6 +378,7 @@ class player {
         }
         ws.onopen = function (e) {
             joinButton.onclick = function(e) {
+                document.getElementById("menu").style.display = "none";
                 ws.send("0" + playerTextName.value.slice(1,16));
             }
             
