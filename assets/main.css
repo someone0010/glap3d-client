@@ -129,3 +129,48 @@ canvas {
 .small {
     width: 10vw !important;
 }
+	.input {
+    	transform: skewX(-10deg);
+   		height: 32px;
+        font-size: 20px;
+        float: left;
+        margin: 2px solid #000;
+        background-color: white;
+        color: black;
+    
+    }
+    .input:text {
+    	transform: skewX(10deg);
+    }
+    .button {
+        transform: skewX(-10deg);
+    }
+    .midtext {
+    	text-align: center;
+    }
+    .text {
+    	transform: skewX(10deg);
+        float: left;
+    }
+    .margin5 {
+    	margin: 5px;
+    }
+    .positive {
+    	border: 2px solid rgb(50, 168, 82);
+        color: white;
+        background-color: rgb(11, 112, 38);
+    }
+    .nomargin {
+    	margin: 0;
+    }
+    .h32 {
+    	height: 38px;
+        font-size: 20px;
+    }
+    .abscenter {
+    	position: absolute;
+        z-index: 99999;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
