@@ -247,7 +247,9 @@ class player {
         
         var ws = new WebSocket(serverUrl);
         window.warws = ws;
-
+        
+        
+        
         ws.onerror = function (err) {
             log("Connection error: " + err);
             log("Current WS state: " + ws.readyState)
@@ -374,7 +376,10 @@ class player {
             alert(e)
         }
         ws.onopen = function (e) {
-            ws.send("0testing1111");
+            joinButton.onclick = function(e) {
+                ws.send("0" + playerTextName.value.slice(1,16));
+            }
+            
         }
 
         function animate() {
