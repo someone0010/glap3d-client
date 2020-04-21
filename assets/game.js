@@ -182,6 +182,8 @@ function onMouseMove( event ) {
     euler.x = Math.max( - PI_2, Math.min( PI_2, euler.x ) );
     camera.quaternion.setFromEuler( euler );
     ws.send(JSON.stringify([4,euler.x,euler.y]));
+    camera.position.x = (Math.sin(euler.y) * 30) + e.x;
+                                        camera.position.z = (Math.cos(euler.y) * 30) + e.z;
 }
 
 function onPointerlockChange() {
@@ -346,8 +348,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                                         camera.position.y = e.y + 2;
                                         
                                         
-                                        camera.position.x = (Math.sin(camera.rotation.y) * 30) + e.x;
-                                        camera.position.z = (Math.cos(camera.rotation.y) * 30) + e.z;
+                                        
                                         pitchtext.innerText = "PITCH: " + (f.rotation.x * (180/Math.PI)).toFixed(2);
                                         yawtext.innerText = "YAW: " + (f.rotation.y * (180/Math.PI)).toFixed(2);
                                         rolltext.innerText = "ROLL: " + (f.rotation.z * (180/Math.PI)).toFixed(2);
