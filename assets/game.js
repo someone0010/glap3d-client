@@ -13,6 +13,7 @@ var playerTextName = document.getElementById("playername"),
     joinButton = document.getElementById("join-button");
 
     joinButton.disabled = true;
+var dataPool = 0;
 document.getElementById("join-button").querySelector("div").innerText = "Loading..";
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
@@ -63,7 +64,6 @@ function log(text) {
 
 }
 class player {
-    dataPool = 0
 
     constructor() {
 
@@ -271,7 +271,8 @@ class player {
         })
         var myinstance = 0;
         ws.onmessage = function (e) {
-            //glThis.dataPool += e.data.length;
+            
+            dataPool += e.data.length;
             var json = JSON.parse(e.data);
             switch (json[0]) {
                 case 0:
@@ -355,9 +356,28 @@ class player {
                     powerbar.style.width = "" + (json[1]/json[2]*100) + "%";
                     velocitybar.style.width = "" + (json[3]/bestvelocity*100) + "%";
                     break;
+                case 7:
+                    stats.innerText = "Players online: " + json[1] + " Time: " + startTime() + " Bandwidth: " + Math.floor(this.dataPool / 1024) + " KB/s";
+                    break;
             }
         }
 
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  return h + ":" + m + ":" + s;
+}
         try {
             var composer = new POSTPROCESSING.EffectComposer(renderer);
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
@@ -395,7 +415,7 @@ class player {
     }
     everysecond() {
 
-        this.dataPool = 0;
+        dataPool = 0;
     }
 }
 var game = new player();
