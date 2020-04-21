@@ -297,8 +297,8 @@ class player {
                                         camera.position.y = e.y + 2;
                                         
                                         
-                                        camera.position.x = (Math.sin(f.rotation.y) * 10) + e.x;
-                                        camera.position.z = (Math.cos(f.rotation.y) * 10) + e.z;
+                                        camera.position.x = (Math.sin(f.rotation.y) * 30) + e.x;
+                                        camera.position.z = (Math.cos(f.rotation.y) * 30) + e.z;
                                         pitchtext.innerText = "PITCH: " + (f.rotation.x * (180/Math.PI)).toFixed(2);
                                         yawtext.innerText = "YAW: " + (f.rotation.y * (180/Math.PI)).toFixed(2);
                                         rolltext.innerText = "ROLL: " + (f.rotation.z * (180/Math.PI)).toFixed(2);
