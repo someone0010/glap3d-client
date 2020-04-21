@@ -139,6 +139,9 @@ canvas {
         color: black;
     font-family: "Lilita One";
     }
+.w200 {
+	width: 200px;
+}
     .input:text {
     	transform: skewX(10deg);
     }
