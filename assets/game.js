@@ -1,6 +1,6 @@
 var logger = document.getElementById("game-log");
 var stats = document.getElementById("stats");
-var serverUrl = "wss://glap3d-server.goblin01.repl.co";
+var serverUrl = "wss://server.glap3d.ga";
 
 var powertext = document.getElementById("power_state"),
     powerbar =  document.getElementById("powerBar"),
