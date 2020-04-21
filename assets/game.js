@@ -13,6 +13,7 @@ var playerTextName = document.getElementById("playername"),
     joinButton = document.getElementById("join-button");
 
     joinButton.disabled = true;
+document.getElementById("join-button").querySelector("div").innerText = "Loading..";
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
         logger.lastChild.textContent = logger.lastChild.textContent + " (x2)"
@@ -388,6 +389,8 @@ class player {
         }
         animate();
         window.planets = planets;
+        joinButton.querySelector("div").innerText = "Join";
+        joinButton.disabled = false;
     }
     everysecond() {
 
