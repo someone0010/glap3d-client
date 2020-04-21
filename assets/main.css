@@ -35,7 +35,7 @@
 
 body {
     margin: 0;
-    font-family: "Lilita One";
+    font-family: "Lilita One" !important;
     color: white;
     font-weight: 100;
     font-size: 18px;
@@ -137,13 +137,14 @@ canvas {
         margin: 2px solid #000;
         background-color: white;
         color: black;
-    
+    font-family: "Lilita One";
     }
     .input:text {
     	transform: skewX(10deg);
     }
     .button {
         transform: skewX(-10deg);
+	    font-family: "Lilita One";
     }
     .midtext {
     	text-align: center;
