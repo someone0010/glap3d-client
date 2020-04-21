@@ -158,6 +158,45 @@ class player {
         var strnT = txtl.load(getURLByQuality("assets/strn/strn", qualitySetting));
         var urnsT = txtl.load(getURLByQuality("assets/urns/urns", qualitySetting));
         var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
+var domElement = document.body;
+var isLocked = false;
+document.addEventListener("click", function(e){
+    domElement.requestPointerLock();
+})
+
+var euler = new THREE.Euler(0,0,0,"YXZ");
+var PI_2 = Math.PI / 2;
+
+function onMouseMove( event ) {
+
+    if ( isLocked === false ) return;
+
+    var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+    var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+    euler.setFromQuaternion( camera.quaternion );
+    euler.y -= movementX * 0.002;
+    euler.x -= movementY * 0.002;
+
+    euler.x = Math.max( - PI_2, Math.min( PI_2, euler.x ) );
+    camera.quaternion.setFromEuler( euler );
+    ws.send(JSON.stringify([4,camera.rotation.x,camera.rotation.y]));
+}
+
+function onPointerlockChange() {
+
+    if ( document.pointerLockElement === domElement ) {
+
+        isLocked = true;
+
+    } else {
+
+        isLocked = false;
+
+    }
+
+}
+document.addEventListener( 'mousemove', onMouseMove, false );
+document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
 
         var sunL = new THREE.MeshBasicMaterial({
             map: sunT,
@@ -261,11 +300,12 @@ class player {
         var bestvelocity = 0;
         var activekeys = [];
         document.addEventListener("keydown", function (e) {
-            if (activekeys[e.keyCode] == true) return;
+            if (activekeys[e.keyCode] == true || !isLocked) return;
             activekeys[e.keyCode] = true;
             ws.send(JSON.stringify([0,e.key,true]))
         })
         document.addEventListener("keyup", function (e) {
+            if (!isLocked) return;
             activekeys[e.keyCode] = false;
             ws.send(JSON.stringify([0,e.key,false]))
         })
