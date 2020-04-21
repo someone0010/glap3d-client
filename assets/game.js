@@ -84,7 +84,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 63")
+        log("Game.js version 71")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -160,7 +160,9 @@ class player {
         var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
 var domElement = document.body;
 var isLocked = false;
+        var myinstance = 0;
 document.addEventListener("click", function(e){
+    if (myinstance == 0) return;
     domElement.requestPointerLock();
 })
 
@@ -309,7 +311,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             activekeys[e.keyCode] = false;
             ws.send(JSON.stringify([0,e.key,false]))
         })
-        var myinstance = 0;
+        
         ws.onmessage = function (e) {
             
             dataPool += e.data.length;
