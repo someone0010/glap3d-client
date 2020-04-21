@@ -84,7 +84,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 57")
+        log("Game.js version 63")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -357,7 +357,7 @@ class player {
                     velocitybar.style.width = "" + (json[3]/bestvelocity*100) + "%";
                     break;
                 case 7:
-                    stats.innerText = "Players online: " + json[1] + " Time: " + startTime() + " Bandwidth: " + Math.floor(this.dataPool / 1024) + " KB/s";
+                    stats.innerText = "Players online: " + json[1] + " Time: " + startTime() + " Bandwidth: " + Math.floor(dataPool / 1024) + " KB/s";
                     break;
             }
         }
