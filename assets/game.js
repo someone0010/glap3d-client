@@ -8,8 +8,11 @@ var powertext = document.getElementById("power_state"),
     velocitybar =  document.getElementById("velocityBar"),
     pitchtext = document.getElementById("pitch_state"),
     yawtext = document.getElementById("yaw_state"),
-    rolltext = document.getElementById("roll_state")
+    rolltext = document.getElementById("roll_state");
+var playerTextName = document.getElementById("playername"),
+    joinButton - document.getElementById("join-button");
 
+    joinButton.disabled = true;
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
         logger.lastChild.textContent = logger.lastChild.textContent + " (x2)"
