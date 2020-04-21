@@ -182,8 +182,7 @@ function onMouseMove( event ) {
     euler.x = Math.max( - PI_2, Math.min( PI_2, euler.x ) );
     camera.quaternion.setFromEuler( euler );
     ws.send(JSON.stringify([4,euler.x,euler.y]));
-    camera.position.x = (Math.sin(euler.y) * 30) + lastPlayerX;
-                                        camera.position.z = (Math.cos(euler.y) * 30) + lastPlayerZ;
+    
 }
 
 function onPointerlockChange() {
@@ -449,7 +448,10 @@ function startTime() {
 
         function animate() {
             requestAnimationFrame(animate);
+            camera.position.x = (Math.sin(euler.y) * 30) + lastPlayerX;
+            camera.position.z = (Math.cos(euler.y) * 30) + lastPlayerZ;
             composer.render();
+            
         }
         animate();
         window.planets = planets;
