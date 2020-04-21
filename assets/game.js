@@ -316,7 +316,7 @@ class player {
                     var material;
                     switch (obj.t) {
                         default:
-                            geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
+                            geometry = new THREE.BoxBufferGeometry(1.5, 1.5, 1.5);
                             
                             material = new THREE.MeshLambertMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222});
                     }
