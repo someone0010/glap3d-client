@@ -84,7 +84,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 82  ASYNC")
+        log("Game.js version 86  ASYNC")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -450,8 +450,6 @@ function startTime() {
             camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerZ;
             camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
             composer.render();
-            console.log(camera.rotation.x);
-            
         }
         animate();
         window.planets = planets;
