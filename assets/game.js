@@ -84,7 +84,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 80 - ASYNC")
+        log("Game.js version 82  ASYNC")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -448,7 +448,7 @@ function startTime() {
             requestAnimationFrame(animate);
             camera.position.x = ((Math.sin(euler.y) - Math.abs(Math.sin(euler.x))) * zoomValue) + lastPlayerX;
             camera.position.z = ((Math.cos(euler.y) - Math.abs(Math.sin(euler.x))) * zoomValue) + lastPlayerZ;
-            camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY + 3;
+            camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
             composer.render();
             
         }
