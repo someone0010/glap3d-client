@@ -158,7 +158,7 @@ class player {
         var strnT = txtl.load(getURLByQuality("assets/strn/strn", qualitySetting));
         var urnsT = txtl.load(getURLByQuality("assets/urns/urns", qualitySetting));
         var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
-var domElement = document.body;
+var domElement = renderer.domElement;
 var isLocked = false;
         var myinstance = 0;
 document.addEventListener("click", function(e){
