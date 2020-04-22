@@ -84,7 +84,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 76 - ASYNC")
+        log("Game.js version 80 - ASYNC")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
