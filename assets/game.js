@@ -84,7 +84,7 @@ class player {
     }
 
     init() {
-        log("Game.js version 71")
+        log("Game.js version 76 - ASYNC")
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -319,7 +319,6 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             var json = JSON.parse(e.data);
             switch (json[0]) {
                 case 0:
-                    log("got message");
                     myinstance = json[1];
                     break;
                 case 1:
@@ -434,7 +433,7 @@ function startTime() {
             var dof1 = new POSTPROCESSING.DepthOfFieldEffect(camera);
             dof1.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
-            log("postprocessing data version 5")
+            
         } catch (e) {
             alert(e)
         }
