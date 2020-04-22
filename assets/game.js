@@ -343,7 +343,6 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                                     f.quaternion.w = e.qw;
                                 if (e.t == 0) {
                                     if (e.n == myinstance) {
-                                        camera.position.y = e.y + 2;
                                         
                                         
                                         
@@ -444,12 +443,12 @@ function startTime() {
             }
             
         }
-
+        var zoomValue = 50;
         function animate() {
             requestAnimationFrame(animate);
-            camera.position.x = ((Math.sin(euler.y) - Math.abs(Math.sin(euler.x))) * 30) + lastPlayerX;
-            camera.position.z = ((Math.cos(euler.y) - Math.abs(Math.sin(euler.x))) * 30) + lastPlayerZ;
-            camera.position.y = Math.sin(euler.x) + lastPlayerY;
+            camera.position.x = ((Math.sin(euler.y) - Math.abs(Math.sin(euler.x))) * zoomValue) + lastPlayerX;
+            camera.position.z = ((Math.cos(euler.y) - Math.abs(Math.sin(euler.x))) * zoomValue) + lastPlayerZ;
+            camera.position.y = Math.sin(euler.x) * zoomValue + lastPlayerY;
             composer.render();
             
         }
