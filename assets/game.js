@@ -127,6 +127,7 @@ class player {
         var strnG = new THREE.SphereBufferGeometry(750, 64, 64);
         var urnsG = new THREE.SphereBufferGeometry(1000, 64, 64);
         var neptG = new THREE.SphereBufferGeometry(600, 64, 64);
+        var moonG = new THREE.SphereBufferGeometry(50, 64, 64);
 
         function getURLByQuality(base, quality) {
             switch (quality) {
@@ -158,6 +159,7 @@ class player {
         var strnT = txtl.load(getURLByQuality("assets/strn/strn", qualitySetting));
         var urnsT = txtl.load(getURLByQuality("assets/urns/urns", qualitySetting));
         var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
+        var moonT = txtl.load(getURLByQuality("assets/moon/moon", qualitySetting));
 var domElement = renderer.domElement;
 var isLocked = false;
         var myinstance = 0;
@@ -249,6 +251,11 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             emissiveMap: neptT,
             emissive: 0x111111
         })
+        var moonL = new THREE.MeshLambertMaterial({
+            map: moonT,
+            emissiveMap: moonT,
+            emissive: 0x111111
+        })
 
         var sunM = new THREE.Mesh(sunG, sunL);
         var mercM = new THREE.Mesh(mercG, mercL);
@@ -259,6 +266,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         var strnM = new THREE.Mesh(strnG, strnL);
         var urnsM = new THREE.Mesh(urnsG, urnsL);
         var neptM = new THREE.Mesh(neptG, neptL);
+        var moonM = new THREE.Mesh(moonG, moonL);
 
         planets.push(sunM);
         planets.push(mercM);
@@ -269,6 +277,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         planets.push(strnM);
         planets.push(urnsM);
         planets.push(neptM);
+        planets.push(moonM);
 
         var alight = new THREE.PointLight(0xffffff, 1, 0, 1.1);
 
