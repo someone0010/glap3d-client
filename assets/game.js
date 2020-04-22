@@ -168,7 +168,7 @@ document.addEventListener("click", function(e){
 
 var euler = new THREE.Euler(0,0,0,"YXZ");
 var PI_2 = Math.PI / 2;
-var lastPlayerX = 0, lastPlayerZ = 0;
+var lastPlayerX = 0, lastPlayerZ = 0, lastPlayerY = 0;
 function onMouseMove( event ) {
 
     if ( isLocked === false ) return;
@@ -351,7 +351,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                                         yawtext.innerText = "YAW: " + (f.rotation.y * (180/Math.PI)).toFixed(2);
                                         rolltext.innerText = "ROLL: " + (f.rotation.z * (180/Math.PI)).toFixed(2);
 
-                                        lastPlayerX = e.x, lastPlayerZ = e.z;
+                                        lastPlayerX = e.x, lastPlayerZ = e.z, lastPlayerY = e.y;
                                     }
                                 }
                             }
@@ -447,8 +447,9 @@ function startTime() {
 
         function animate() {
             requestAnimationFrame(animate);
-            camera.position.x = (Math.sin(euler.y) * 30) + lastPlayerX;
-            camera.position.z = (Math.cos(euler.y) * 30) + lastPlayerZ;
+            camera.position.x = ((Math.sin(euler.y) - Math.abs(Math.sin(euler.x))) * 30) + lastPlayerX;
+            camera.position.z = ((Math.cos(euler.y) - Math.abs(Math.sin(euler.x))) * 30) + lastPlayerZ;
+            camera.position.y = Math.sin(euler.x) + lastPlayerY;
             composer.render();
             
         }
