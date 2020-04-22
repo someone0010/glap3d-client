@@ -446,10 +446,11 @@ function startTime() {
         var zoomValue = 50;
         function animate() {
             requestAnimationFrame(animate);
-            camera.position.x = (Math.cos(euler.x) + Math.sin(euler.y)) * zoomValue + lastPlayerX;
-            camera.position.z = (Math.sin(euler.x) + Math.sin(euler.y)) * zoomValue + lastPlayerZ;
+            camera.position.x = Math.sin(euler.y) * zoomValue + lastPlayerX;
+            camera.position.z = Math.cos(euler.y) * zoomValue + lastPlayerZ;
             camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
             composer.render();
+            console.log(camera.rotation.x);
             
         }
         animate();
