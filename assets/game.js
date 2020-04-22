@@ -363,7 +363,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                     var material;
                     switch (obj.t) {
                         default:
-                            geometry = new THREE.BoxBufferGeometry(5, 5, 5);
+                            geometry = new THREE.BoxBufferGeometry(10, 10, 10);
                             
                             material = new THREE.MeshLambertMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222});
                     }
@@ -443,7 +443,7 @@ function startTime() {
             }
             
         }
-        var zoomValue = 50;
+        var zoomValue = 75;
         function animate() {
             requestAnimationFrame(animate);
             camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerX;
