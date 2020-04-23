@@ -87,7 +87,7 @@ class player {
     init() {
         log("Game.js version 86  ASYNC")
         
-        var fireshading = particleFire.install(THREE);
+        var fireshading = particleFire.install({"THREE": THREE});
         window.FireShading = fireshading;
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
