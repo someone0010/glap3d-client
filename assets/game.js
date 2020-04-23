@@ -86,6 +86,9 @@ class player {
 
     init() {
         log("Game.js version 86  ASYNC")
+        
+        var fireshading = particleFire.install(THREE);
+        window.FireShading = fireshading;
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -95,7 +98,7 @@ class player {
             }
             return;
         }
-
+        
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
         setInterval(this.everysecond, 1000);
