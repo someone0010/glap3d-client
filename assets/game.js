@@ -10,7 +10,8 @@ var powertext = document.getElementById("power_state"),
     yawtext = document.getElementById("yaw_state"),
     rolltext = document.getElementById("roll_state");
 var playerTextName = document.getElementById("playername"),
-    joinButton = document.getElementById("join-button");
+    joinButton = document.getElementById("join-button"),
+    affiliateGlap = document.getElementById("glap-seo-opt");
 
     joinButton.disabled = true;
 var dataPool = 0;
@@ -449,6 +450,7 @@ function startTime() {
             joinButton.onclick = function(e) {
                 document.getElementById("menu").style.display = "none";
                 ws.send("0" + playerTextName.value.slice(0,15));
+                affiliateGlap.style.display = "none";
             }
             
         }
