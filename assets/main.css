@@ -217,3 +217,22 @@ canvas {
 	border: 2px solid rgb(138, 138, 138);
 	background-color: rgb(92, 92, 92);
 }
+
+        .downalert {
+            width: 35vw; 
+            height: 8vh; 
+            background-color: rgb(138, 18, 18); 
+            border: 2px solid rgb(207, 17, 17);
+            z-index: 800; 
+            position: absolute; 
+            left: 50%;
+            top: 70%;
+            transform: skewX(-10deg) translate(-50%, -70%);
+        }
+    .downalerttext {
+        transform: skewX(10deg) translate(-50%, -50%); 
+        left: 50%; 
+        top: 50%; 
+        position: absolute; 
+    }
+    
