@@ -445,6 +445,7 @@ function startTime() {
             var dof1 = new POSTPROCESSING.DepthOfFieldEffect(camera);
             dof1.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
+            composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect()));
             
         } catch (e) {
             alert(e)
