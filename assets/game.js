@@ -109,6 +109,7 @@ class player {
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement)
+        window.renderer = renderer;
 
         function onWindowResize() {
 
