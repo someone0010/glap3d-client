@@ -560,7 +560,7 @@ let searchImage = new Image();
                 fps = 0;
                 stats.innerHTML = startTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + ms + " ms</span> <span style='color:rgb(22, 127, 219)'>" + fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + kbs + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + playercount + " players online</span>";
             }
-            if (lastTime) ms = peformance.now() - lastTime;
+            if (lastTime) ms = performance.now() - lastTime;
             lastTime = performance.now();
             if (!lastSecond) lastSecond = performance.now();
         }
