@@ -25,7 +25,8 @@ var settingsData = {
     "aa": {setting:["Off","Low","Medium","High","Ultra"],current:1,critical:true},
     "ao": {setting:["Off","On"],current:1},
     "ptd":{setting:["Off","On"],current:1},
-    "jg": {setting:["Off","On"],current:1}
+    "jg": {setting:["Off","On"],current:1},
+    "flt": {setting:["Off","Linear","Realistic","Cinematic"],current:1}
 }
 
 var loadedsettings = JSON.parse(localStorage.getItem("settingsData")) || {"gq":1,"sk":1,"shd":1,"gd":1,"bl":1,"dof":1,"aa":1,"ao":1,"ptd":1,"jg":1};
@@ -495,7 +496,7 @@ function startTime() {
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
             composer.addPass(renderPass);
             if (settingsData["bl"].current) {
-            var blme = new POSTPROCESSING.BloomEffect();
+            var blme = new POSTPROCESSING.BloomEffect({texture:sunL,intensity:0.6});
             blme.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
             }
