@@ -154,6 +154,7 @@ class player {
             renderer.setSize(window.innerWidth, window.innerHeight);
             
             camera.updateProjectionMatrix();
+            renderer.setPixelRatio( window.devicePixelRatio );
 
         }
         window.addEventListener('resize', onWindowResize, false);
