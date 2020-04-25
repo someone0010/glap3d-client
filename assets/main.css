@@ -195,9 +195,12 @@ canvas {
     border: 2px solid rgb(227, 0, 0);
     background-color: rgb(175, 0, 0);
     color: white;
-    transform: skewX(-10deg) translate(-50%, 0);
+    transform: skewX(-10deg);
+    width: 50%;
+    height: 24px;
     text-align: center;
 }
+
 .button-group {
     margin: 1px;
 }
