@@ -22,7 +22,7 @@ var settingsData = JSON.parse(localStorage.getItem("settingsData")) || {
     "gd": {setting:["Off","On"],current:1,critical:true},
     "bl": {setting:["Off","On"],current:1,critical:true},
     "dof":{setting:["Off","On"],current:1,critical:true},
-    "aa": {setting:["Off","On"],current:1,critical:true},
+    "aa": {setting:["Off","Low","Medium","High","Ultra"],current:1,critical:true},
     "ao": {setting:["Off","On"],current:1},
     "ptd":{setting:["Off","On"],current:1},
     "jg": {setting:["Off","On"],current:1}
@@ -155,7 +155,6 @@ class player {
         setInterval(this.everysecond, 1000);
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
-            antialias: !!settingsData["aa"].current,
             powerPreference: "high-performance"
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -504,7 +503,9 @@ function startTime() {
             dof1.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
         }
-            //composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio())));
+        if (settingsData["aa"].current != 0) {
+            composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect(POSTPROCESSING.SMAAEffect.areaImageDataURL, POSTPROCESSING.SMAAEffect.searchImageDataURL, settingsData["aa"].current-1, POSTPROCESSING.EdgeDetectionMode.DEPTH)));
+        }
         ws.onopen = function (e) {
             joinButton.onclick = function(e) {
                 document.getElementById("menu").style.display = "none";
