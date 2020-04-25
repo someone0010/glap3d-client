@@ -188,7 +188,8 @@ canvas {
     right: 0;
 }
 .control-disc {
-    color: rgb(127, 127, 127);
+    color: rgb(150, 150, 150);
+    text-align: center;
 }
 .reload-alert {
     color: rgb(227, 0, 0);
@@ -235,4 +236,7 @@ button, a, input {
     display: inline-block;
     width: 75px;
     text-align: center;
+}
+#on-apply-changes-buttons {
+    float: right;
 }
