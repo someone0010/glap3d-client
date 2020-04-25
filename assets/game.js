@@ -45,7 +45,7 @@ for (let [key,val] of Object.entries(settingsData)) {
             originalValues[key].critical = false;
             criticalCount--;
         }
-        if (criticalCount != 0) {
+        if (criticalCount == 0) {
             document.querySelector("div.reload-alert").style.display = "block";
         } else {
             document.querySelector("div.reload-alert").style.display = "none";
@@ -62,7 +62,7 @@ if (!settingsData[key].current == originalValues[key].original && !originalValue
             originalValues[key].critical = false;
             criticalCount--;
         }
-        if (criticalCount != 0) {
+        if (criticalCount == 0) {
             document.querySelector("div.reload-alert").style.display = "block";
         } else {
             document.querySelector("div.reload-alert").style.display = "none";
