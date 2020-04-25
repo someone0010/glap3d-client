@@ -209,8 +209,7 @@ document.addEventListener( 'mousemove', onMouseMove, false );
 document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
 
         var sunL = new THREE.MeshBasicMaterial({
-            map: sunT,
-            emissive: 0x222222
+            map: sunT
         })
         var mercL = new THREE.MeshLambertMaterial({
             map: mercT,
@@ -227,7 +226,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         var erthL = new THREE.MeshLambertMaterial({
             map: erthT,
             emissiveMap: erthT,
-            norMap: erthTNOR,
+            normalMap: erthTNOR,
             aoMap: erthTAO,
             emissive: 0x111111
         })
