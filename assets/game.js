@@ -139,7 +139,7 @@ class player {
         setInterval(this.everysecond, 1000);
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
-            antialias: true,
+            antialias: !!settingsData["aa"].current,
             powerPreference: "high-performance"
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -174,16 +174,14 @@ class player {
 
         function getURLByQuality(base, quality) {
             switch (quality) {
-                case "lowest":
-                    return base + "_512.jpg";
-                case "low":
-                    return base + "_1k.jpg";
-                case "medium":
-                    return base + "_2k.jpg";
-                case "high":
-                    return base + "_4k.jpg";
-                case "ultra":
-                    return base + "_8k.jpg";
+                case 0:
+                    return base + "_low.jpg";
+                case 1:
+                    return base + "_medium.jpg";
+                case 2:
+                    return base + "_high.jpg";
+                case 3:
+                    return base + "_ultra.jpg";
             }
         }
 
@@ -193,16 +191,16 @@ class player {
         camera.position.z = 30000;
         window.camera = camera;
 
-        var sunT = txtl.load(getURLByQuality("assets/sun/sun", qualitySetting));
-        var mercT = txtl.load(getURLByQuality("assets/merc/merc", qualitySetting));
-        var vensT = txtl.load(getURLByQuality("assets/vens/vens", qualitySetting));
-        var erthT = txtl.load(getURLByQuality("assets/erth/erth", qualitySetting));
-        var marsT = txtl.load(getURLByQuality("assets/mars/mars", qualitySetting));
-        var juptT = txtl.load(getURLByQuality("assets/jupt/jupt", qualitySetting));
-        var strnT = txtl.load(getURLByQuality("assets/strn/strn", qualitySetting));
-        var urnsT = txtl.load(getURLByQuality("assets/urns/urns", qualitySetting));
-        var neptT = txtl.load(getURLByQuality("assets/nept/nept", qualitySetting));
-        var moonT = txtl.load(getURLByQuality("assets/moon/moon", qualitySetting));
+        var sunT = txtl.load(getURLByQuality("assets/sun/sun", settingsData["gq"].current));
+        var mercT = txtl.load(getURLByQuality("assets/merc/merc", settingsData["gq"].current));
+        var vensT = txtl.load(getURLByQuality("assets/vens/vens", settingsData["gq"].current));
+        var erthT = txtl.load(getURLByQuality("assets/erth/erth", settingsData["gq"].current));
+        var marsT = txtl.load(getURLByQuality("assets/mars/mars", settingsData["gq"].current));
+        var juptT = txtl.load(getURLByQuality("assets/jupt/jupt", settingsData["gq"].current));
+        var strnT = txtl.load(getURLByQuality("assets/strn/strn", settingsData["gq"].current));
+        var urnsT = txtl.load(getURLByQuality("assets/urns/urns", settingsData["gq"].current));
+        var neptT = txtl.load(getURLByQuality("assets/nept/nept", settingsData["gq"].current));
+        var moonT = txtl.load(getURLByQuality("assets/moon/moon", settingsData["gq"].current));
 var domElement = renderer.domElement;
 var isLocked = false;
         var myinstance = 0;
@@ -330,7 +328,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         scene.add(alight);
 
         var skySphereG = new THREE.SphereBufferGeometry(160000, 256, 256);
-        var skySphereT = txtl.load("assets/starfield_8k.jpg");
+        var skySphereT = txtl.load(getURLByQuality("/assets/starfield/starfield", settingsData["gq"].current));
         var skySphereL = new THREE.MeshBasicMaterial({
             map: skySphereT
         });
