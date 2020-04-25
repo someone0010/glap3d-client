@@ -222,13 +222,13 @@ canvas {
         .downalert {
             width: 35vw; 
             height: 8vh; 
-            background-color: rgb(138, 18, 18); 
-            border: 2px solid rgb(207, 17, 17);
+            background-color: rgba(138, 18, 18, 0.6); 
+            border: 2px solid rgba(207, 17, 17, 0.6);
             z-index: 800; 
             position: absolute; 
             left: 50%;
             top: 70%;
-            transform: skewX(-10deg) translate(-50%, -70%);
+            transform: skewX(-10deg) translate(-50%, 0);
         }
     .downalerttext {
         transform: skewX(10deg) translate(-50%, -50%); 
@@ -238,6 +238,6 @@ canvas {
     }
    
 
-a:hover, button:hover {
+a:hover, button:hover, input:hover {
     cursor: url('https://i.imgur.com/kca1Y8e.png'), pointer;
 }
