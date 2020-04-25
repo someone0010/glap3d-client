@@ -167,7 +167,20 @@ class player {
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement)
-        window.renderer = renderer;
+        switch (settingsData["flt"].current) {
+            case 0:
+                renderer.toneMapping = THREE.NoToneMapping;
+                break;
+            case 1:
+                renderer.toneMapping = THREE.LinearToneMapping;
+                break;
+            case 2:
+                renderer.toneMapping = THREE.ReinhardToneMapping;
+                break;
+            case 3:
+                renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                break;
+        }
 
         function onWindowResize() {
 
