@@ -170,6 +170,7 @@ canvas {
     z-index: 90000;
     background-color: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(5px);
+    width: 700px;
 }
 .settings-container {
     margin: 20px;
