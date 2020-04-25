@@ -152,9 +152,9 @@ class player {
             
 
             renderer.setSize(window.innerWidth, window.innerHeight);
-            
+            composer.setSize(window.innerWidth, window.innerHeight);
             camera.updateProjectionMatrix();
-            renderer.setPixelRatio( window.devicePixelRatio );
+            
 
         }
         window.addEventListener('resize', onWindowResize, false);
@@ -470,7 +470,7 @@ function startTime() {
   s = checkTime(s);
   return h + ":" + m + ":" + s;
 }
-        try {
+        
             var composer = new POSTPROCESSING.EffectComposer(renderer);
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
             composer.addPass(renderPass);
@@ -485,10 +485,6 @@ function startTime() {
             dof1.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
             //composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio())));
-            
-        } catch (e) {
-            alert(e)
-        }
         ws.onopen = function (e) {
             joinButton.onclick = function(e) {
                 document.getElementById("menu").style.display = "none";
