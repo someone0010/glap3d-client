@@ -328,7 +328,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         scene.add(alight);
 
         var skySphereG = new THREE.SphereBufferGeometry(160000, 256, 256);
-        var skySphereT = txtl.load(getURLByQuality("/assets/starfield/starfield", settingsData["gq"].current));
+        var skySphereT = txtl.load(getURLByQuality("/assets/starfield/starfield", settingsData["sk"].current));
         var skySphereL = new THREE.MeshBasicMaterial({
             map: skySphereT
         });
