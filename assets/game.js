@@ -504,7 +504,11 @@ function startTime() {
             composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
         }
         if (settingsData["aa"].current != 0) {
-            composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect(POSTPROCESSING.SMAAEffect.areaImageDataURL, POSTPROCESSING.SMAAEffect.searchImageDataURL, settingsData["aa"].current-1, POSTPROCESSING.EdgeDetectionMode.DEPTH)));
+            let areaImage = new Image();
+    areaImage.src = POSTPROCESSING.SMAAEffect.areaImageDataURL;
+let searchImage = new Image();
+    searchImage.src = POSTPROCESSING.SMAAEffect.searchImageDataURL;
+            composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect(searchImage, areaImage, settingsData["aa"].current-1, POSTPROCESSING.EdgeDetectionMode.DEPTH)));
         }
         ws.onopen = function (e) {
             joinButton.onclick = function(e) {
