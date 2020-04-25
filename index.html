@@ -56,26 +56,80 @@
 	<button class="button positive midtext nomargin h32" id="settings-button"><div class="text margin5">Settings</div></button>
 	
     </div>
-	<div class="settings" style="display:none">
-		<div class="settings-container">
-			<div class="settings-body">
-				<div class="control-row">
-					<div class="control-label">Graphics Power</div>
-					<div class="control-value"></div>
-				</div>
-				<div class="control-row">
-					<div class="control-label">Godrays</div>
-					<div class="control-value"></div>
-				</div>
-				<div class="control-disc" id="reload-disclaimer">Some settings might need you to reload the game.</div>
-				<div style="display:none" class="reload-alert">Reload Required</div>
-				<div class="button-group" id="on-apply-changes-buttons">
-					<button class="button h32 neutral nomargin" id="apply-button"><div class="text margin5">Apply Changes</div></button>
-					<button class="button h32 neutral nomargin" id="cancel-button"><div class="text margin5">Cancel</div></button>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="settings">
+    <div class="settings-container">
+        <div class="settings-body">
+            <div class="control-row">
+                <div class="control-label">Texture quality</div>
+                <div class="control-value"> <button class="sliderbutton" id="gq_left">⮜</button>
+                    <div class="slidertext">Ultra</div><button class="sliderbutton" id="gq_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Skysphere quality</div>
+                <div class="control-value"><button class="sliderbutton" id="sk_left">⮜</button>
+                    <div class="slidertext">Ultra</div><button class="sliderbutton" id="sk_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Shadows</div>
+                <div class="control-value"><button class="sliderbutton" id="shd_left">⮜</button>
+                    <div class="slidertext">Ultra</div><button class="sliderbutton" id="shd_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Godrays</div>
+                <div class="control-value"><button class="sliderbutton" id="gd_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="gd_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Bloom effect</div>
+                <div class="control-value"><button class="sliderbutton" id="bl_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="bl_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Depth of Field</div>
+                <div class="control-value"><button class="sliderbutton" id="dof_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="dof_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Antialiasing</div>
+                <div class="control-value"><button class="sliderbutton" id="aa_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="aa_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Ambient Occlusion</div>
+                <div class="control-value"><button class="sliderbutton" id="gd_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="gd_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Planet displacement</div>
+                <div class="control-value"><button class="sliderbutton" id="gd_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="gd_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-label">Jet Glow</div>
+                <div class="control-value"><button class="sliderbutton" id="gd_left">⮜</button>
+                    <div class="slidertext">On</div><button class="sliderbutton" id="gd_right">⮞</button>
+                </div>
+            </div>
+            <div class="control-disc" id="reload-disclaimer">Some settings might need you to reload the game.</div>
+            <div style="display:none" class="reload-alert">Reload Required</div>
+            <div class="button-group" id="on-apply-changes-buttons"><button class="button h32 neutral nomargin"
+                    id="apply-button">
+                    <div class="text margin5">Apply Changes</div>
+                </button><button class="button h32 neutral nomargin" id="cancel-button">
+                    <div class="text margin5">Cancel</div>
+                </button></div>
+        </div>
+    </div>
+</div>
     <script async src="./assets/game.js"></script>
 	<div id="glap-seo-opt">
 	<button class="button neutral midtext nomargin h32" style="bottom: 2px; left: 2px; margin: 3px; z-index: 1200; position: absolute; color: white" onclick="window.location = 'https://glap-io.tk';">
