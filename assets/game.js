@@ -211,51 +211,51 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         var sunL = new THREE.MeshBasicMaterial({
             map: sunT
         })
-        var mercL = new THREE.MeshLambertMaterial({
+        var mercL = new THREE.MeshStandardMaterial({
             map: mercT,
             emissiveMap: mercT,
             emissive: 0x111111
         })
-        var vensL = new THREE.MeshLambertMaterial({
+        var vensL = new THREE.MeshStandardMaterial({
             map: vensT,
             emissiveMap: vensT,
             emissive: 0x111111
         })
         var erthTNOR = txtl.load("assets/erth/earth_nor.png");
         var erthTAO = txtl.load("assets/erth/earth_ao.png");
-        var erthL = new THREE.MeshLambertMaterial({
+        var erthL = new THREE.MeshStandardMaterial({
             map: erthT,
             emissiveMap: erthT,
             normalMap: erthTNOR,
             aoMap: erthTAO,
             emissive: 0x111111
         })
-        var marsL = new THREE.MeshLambertMaterial({
+        var marsL = new THREE.MeshStandardMaterial({
             map: marsT,
             emissiveMap: marsT,
             emissive: 0x111111
         })
-        var juptL = new THREE.MeshLambertMaterial({
+        var juptL = new THREE.MeshStandardMaterial({
             map: juptT,
             emissiveMap: juptT,
             emissive: 0x111111
         })
-        var strnL = new THREE.MeshLambertMaterial({
+        var strnL = new THREE.MeshStandardMaterial({
             map: strnT,
             emissiveMap: strnT,
             emissive: 0x111111
         })
-        var urnsL = new THREE.MeshLambertMaterial({
+        var urnsL = new THREE.MeshStandardMaterial({
             map: urnsT,
             emissiveMap: urnsT,
             emissive: 0x111111
         })
-        var neptL = new THREE.MeshLambertMaterial({
+        var neptL = new THREE.MeshStandardMaterial({
             map: neptT,
             emissiveMap: neptT,
             emissive: 0x111111
         })
-        var moonL = new THREE.MeshLambertMaterial({
+        var moonL = new THREE.MeshStandardMaterial({
             map: moonT,
             emissiveMap: moonT,
             emissive: 0x111111
