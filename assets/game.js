@@ -28,7 +28,15 @@ var settingsData = {
     "jg": {setting:["Off","On"],current:1}
 }
 
-var loadedsettings = JSON.parse(localStorage.getItem("settingsData"));
+var loadedsettings = JSON.parse(localStorage.getItem("settingsData")) || {"gq":1,"sk":1,"shd":1,"gd":1,"bl":1,"dof":1,"aa":1,"ao":1,"ptd":1,"jg":1};
+
+if (typeof loadedsettings["gq"] == "object") {
+    var i = {};
+    for (let [key, val] of Object.entries(settingsData)) {
+        i[key] = val.current;
+    }
+    localStorage.setItem("settingsData", JSON.stringify(i));
+}
 
 for (let [key, val] of Object.entries(loadedsettings)) {
         settingsData[key].current = val;
