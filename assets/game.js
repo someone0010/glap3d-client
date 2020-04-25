@@ -27,25 +27,15 @@ var settingsData = JSON.parse(localStorage.getItem("settingsData")) || {
     "ptd":{setting:["Off","On"],current:1},
     "jg": {setting:["Off","On"],current:1}
 }
+var last = Object.assign({}, settingsData);
  document.querySelector("div.reload-alert").style.display = "none";
-var originalValues = {};
-var criticalCount = 0;
 for (let [key,val] of Object.entries(settingsData)) {
     settingsData[key].textelem = document.getElementById(key + "_text");
     settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
-    originalValues[key] = {original:val.current,critical:true}
     document.getElementById(key + "_left").addEventListener("click", function() {
         settingsData[key].current = Math.max(0, settingsData[key].current-1);
         settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
-        if (!settingsData[key].current == originalValues[key].original && !originalValues[key].critical) {
-            originalValues[key].critical = true;
-            criticalCount++;
-        }
-        if (settingsData[key].current == originalValues[key].original && originalValues[key].critical) {
-            originalValues[key].critical = false;
-            criticalCount--;
-        }
-        if (criticalCount == 0) {
+        if (last != settingsData) {
             document.querySelector("div.reload-alert").style.display = "block";
         } else {
             document.querySelector("div.reload-alert").style.display = "none";
@@ -54,15 +44,7 @@ for (let [key,val] of Object.entries(settingsData)) {
     document.getElementById(key + "_right").addEventListener("click", function() {
         settingsData[key].current = Math.min(settingsData[key].setting.length-1, settingsData[key].current+1);
         settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
-if (!settingsData[key].current == originalValues[key].original && !originalValues[key].critical) {
-            originalValues[key].critical = true;
-            criticalCount++;
-        }
-        if (settingsData[key].current == originalValues[key].original && originalValues[key].critical) {
-            originalValues[key].critical = false;
-            criticalCount--;
-        }
-        if (criticalCount == 0) {
+        if (last != settingsData) {
             document.querySelector("div.reload-alert").style.display = "block";
         } else {
             document.querySelector("div.reload-alert").style.display = "none";
