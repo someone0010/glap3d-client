@@ -182,7 +182,7 @@ canvas {
 }
 .control-value {
     display: inline;
-    float: left;
+    float: right;
     right: 0;
 }
 .control-disc {
@@ -232,4 +232,5 @@ button, a, input {
 .slidertext {
     display: inline-block;
     width: 75px;
+    text-align: center;
 }
