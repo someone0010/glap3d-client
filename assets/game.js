@@ -472,16 +472,22 @@ function startTime() {
             var composer = new POSTPROCESSING.EffectComposer(renderer);
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
             composer.addPass(renderPass);
+            if (settingsData["bl"].current) {
             var blme = new POSTPROCESSING.BloomEffect();
             blme.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
+            }
+        if (settingsData["gd"].current) {
             let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
             godraysEffect.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, godraysEffect));
+        }
             // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
+        if (settingsData["dof"].current) {
             var dof1 = new POSTPROCESSING.DepthOfFieldEffect(camera);
             dof1.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, dof1));
+        }
             //composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SMAAEffect(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio())));
         ws.onopen = function (e) {
             joinButton.onclick = function(e) {
