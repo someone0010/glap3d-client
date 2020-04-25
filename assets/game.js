@@ -27,6 +27,7 @@ var settingsData = JSON.parse(localStorage.getItem("settingsData")) || {
     "ptd":{setting:["Off","On"],current:1},
     "jg": {setting:["Off","On"],current:1}
 }
+ document.querySelector("div.reload-alert").style.display = "none";
 var originalValues = {};
 var criticalCount = 0;
 for (let [key,val] of Object.entries(settingsData)) {
