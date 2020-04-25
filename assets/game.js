@@ -15,6 +15,41 @@ var playerTextName = document.getElementById("playername"),
 
     joinButton.disabled = true;
 var dataPool = 0;
+var settingsData = JSON.parse(localStorage.getItem("settingsData")) || {
+    "gq": {setting:["Low","Medium","High","Ultra"],current:3},
+    "sk": {setting:["Low","Medium","High","Ultra"],current:3},
+    "shd":{setting:["Low","Medium","High","Ultra"],current:3},
+    "gd": {setting:["Off","On"],current:1},
+    "bl": {setting:["Off","On"],current:1},
+    "dof":{setting:["Off","On"],current:1},
+    "aa": {setting:["Off","On"],current:1},
+    "ao": {setting:["Off","On"],current:1},
+    "ptd":{setting:["Off","On"],current:1},
+    "jg": {setting:["Off","On"],current:1}
+}
+for (let [key,val] of Object.entries(settingsData)) {
+    settingsData[key].textelem = document.getElementById(key + "_text");
+    settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
+    document.getElementById(key + "_left").addEventListener("click", function() {
+        settingsData[key].current = Math.max(0, settingsData[key].current-1);
+        settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
+        localStorage.setItem("settingsData", JSON.stringify(settingsData));
+    })
+    document.getElementById(key + "_right").addEventListener("click", function() {
+        settingsData[key].current = Math.min(settingsData[key].setting.length-1, settingsData[key].current+1);
+        settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
+        localStorage.setItem("settingsData", JSON.stringify(settingsData));
+    })
+}
+var settingsOn = false;
+document.getElementById("settings-button").addEventListener("click", () => {
+    settingsOn = true;
+    document.querySelector(".settings").style.display = "block";
+})
+document.getElementById("cancel-button").addEventListener("click", () => {
+    settingsOn = false;
+    document.querySelector(".settings").style.display = "none";
+})
 document.getElementById("join-button").querySelector("div").innerText = "Loading..";
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
@@ -170,6 +205,7 @@ var isLocked = false;
         var myinstance = 0;
 document.addEventListener("click", function(e){
     if (myinstance == 0) return;
+    if (settingsOn) return;
     domElement.requestPointerLock();
 })
 
