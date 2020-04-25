@@ -399,6 +399,8 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             ws.send(JSON.stringify([0,e.key,false]))
         })
         var eu = new THREE.Euler(0,0,0,"YXZ");
+        var kbs = 0;
+        var playercount = 0;
         ws.onmessage = function (e) {
             
             dataPool += e.data.length;
@@ -483,7 +485,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                     velocitybar.style.width = "" + (json[3]/bestvelocity*100) + "%";
                     break;
                 case 7:
-                    stats.innerText = "Players online: " + json[1] + " Time: " + startTime() + " Bandwidth: " + Math.floor(dataPool / 1024) + " KB/s";
+                    playercount = json[1];
+                    kbs = Math.floor(dataPool / 1024)
+                    
                     break;
             }
         }
@@ -540,12 +544,25 @@ let searchImage = new Image();
             
         }
         var zoomValue = 75;
+        var lastTime;
+        var lastSecond;
+        var fps = 0;
+        var ms = 0;
         function animate() {
             requestAnimationFrame(animate);
             camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerX;
             camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerZ;
             camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
             composer.render();
+            fps++;
+            if (performance.now() - lastSecond >= 1000) {
+                lastSecond = performance.now();
+                fps = 0;
+                stats.innerHTML = startTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + ms + " ms</span> <span style='color:rgb(22, 127, 219)'>" + fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + kbs + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + playercount + " players online</span>";
+            }
+            if (lastTime) ms = peformance.now() - lastTime;
+            lastTime = performance.now();
+            if (!lastSecond) lastSecond = performance.now();
         }
         animate();
         window.planets = planets;
