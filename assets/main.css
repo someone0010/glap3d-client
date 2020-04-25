@@ -39,7 +39,7 @@ body {
     color: white;
     font-weight: 100;
     font-size: 18px;
-	cursor: url('https://i.imgur.com/ON0NZbx.png'), auto;
+	cursor: url('https://i.imgur.com/ON0NZbx.png'), pointer;
 }
 
 canvas {
@@ -239,5 +239,5 @@ canvas {
    
 
 a:hover, button:hover {
-    cursor: url('https://i.imgur.com/kca1Y8e.png'), auto;
+    cursor: url('https://i.imgur.com/kca1Y8e.png'), pointer;
 }
