@@ -244,3 +244,13 @@ a:hover, button:hover, input:hover {
 button, a, input {
 	cursor: url('https://i.imgur.com/ON0NZbx.png'), pointer;
 }
+
+    .sliderbutton {
+        border: none;
+        background-color: transparent;
+        color: white;
+    }
+    .sliderbutton:focus {
+        outline: none;
+    }
+    
