@@ -28,6 +28,7 @@ var settingsData = JSON.parse(localStorage.getItem("settingsData")) || {
     "jg": {setting:["Off","On"],current:1}
 }
 var last = Object.assign({}, settingsData);
+console.log(last);
  document.querySelector("div.reload-alert").style.display = "none";
 for (let [key,val] of Object.entries(settingsData)) {
     settingsData[key].textelem = document.getElementById(key + "_text");
@@ -35,7 +36,7 @@ for (let [key,val] of Object.entries(settingsData)) {
     document.getElementById(key + "_left").addEventListener("click", function() {
         settingsData[key].current = Math.max(0, settingsData[key].current-1);
         settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
-        if (last != settingsData) {
+        if (JSON.stringify(last) != JSON.stringify(settingsData)) {
             document.querySelector("div.reload-alert").style.display = "block";
         } else {
             document.querySelector("div.reload-alert").style.display = "none";
@@ -44,7 +45,7 @@ for (let [key,val] of Object.entries(settingsData)) {
     document.getElementById(key + "_right").addEventListener("click", function() {
         settingsData[key].current = Math.min(settingsData[key].setting.length-1, settingsData[key].current+1);
         settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
-        if (last != settingsData) {
+        if (JSON.stringify(last) != JSON.stringify(settingsData)) {
             document.querySelector("div.reload-alert").style.display = "block";
         } else {
             document.querySelector("div.reload-alert").style.display = "none";
