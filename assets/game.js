@@ -378,6 +378,8 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
 
         planets.forEach(e => {
             scene.add(e);
+            e.castShadow = true;
+            e.receiveShadow = true;
         })
         scene.add(alight);
 
@@ -471,7 +473,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                         default:
                             geometry = new THREE.BoxBufferGeometry(10, 10, 10);
                             
-                            material = new THREE.MeshStandardMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x992222});
+                            material = new THREE.MeshStandardMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222});
                     }
                     var mesh = new THREE.Mesh(geometry, material);
                     var pl = new THREE.PointLight(0xfa0000, 1, 50);
