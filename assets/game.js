@@ -378,8 +378,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
 
         var alight = new THREE.PointLight(0xffffff, 1, 0, 1.1);
         alight.castShadow = true;
-        planets.forEach(e => {
+        planets.forEach((e,i) => {
             scene.add(e);
+            if (i==0) return;
             e.castShadow = true;
             e.receiveShadow = true;
         })
