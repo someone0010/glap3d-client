@@ -144,10 +144,6 @@ class player {
     }
 
     init() {
-        log("Game.js version 86  ASYNC")
-        
-        var fireshading = particleFire.install({"THREE": THREE});
-        window.FireShading = fireshading;
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -225,7 +221,6 @@ class player {
 
         var txtl = new THREE.TextureLoader();
 
-        log("Loading planet textures..")
         camera.position.z = 30000;
         window.camera = camera;
 
