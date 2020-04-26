@@ -376,13 +376,14 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         planets.push(neptM);
         planets.push(moonM);
 
-        var alight = new THREE.PointLight(0xffffff, 1, 0, 1.1);
+        var alight = new THREE.PointLight(0xffffff, 1, 0, 1);
         alight.castShadow = true;
         planets.forEach((e,i) => {
             scene.add(e);
-            if (i==0) return;
-            //e.castShadow = true;
+            if (i!=0) {
+            e.castShadow = true;
             e.receiveShadow = true;
+            }
         })
         scene.add(alight);
 
