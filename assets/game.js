@@ -167,8 +167,8 @@ class player {
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement)
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFShadowMap;
+        //renderer.shadowMap.enabled = true;
+        //renderer.shadowMap.type = THREE.PCFShadowMap;
         switch (settingsData["flt"].current) {
             case 0:
                 renderer.toneMapping = THREE.NoToneMapping;
@@ -380,10 +380,10 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         alight.castShadow = true;
         planets.forEach((e,i) => {
             scene.add(e);
-            if (i!=0) {
+            /*if (i!=0) {
             e.castShadow = true;
             e.receiveShadow = true;
-            }
+            }*/
         })
         scene.add(alight);
 
@@ -481,12 +481,13 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                     }
                     var mesh = new THREE.Mesh(geometry, material);
                     var pl = new THREE.PointLight(0xfa0000, 1, 50);
-                    pl.castShadow = true;
+                    /*pl.castShadow = true;
                     pl.shadow.mapSize.width = 1024;
                     pl.shadow.mapSize.height = 1024;
                     mesh.castShadow = true;
-                    mesh.receiveShadow = true;
+                    mesh.receiveShadow = true;*/
                     mesh.add(pl);
+                    
                     
                     mesh.userData.id = obj.i;
                     if (obj.t == 0) {
