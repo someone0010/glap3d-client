@@ -230,7 +230,7 @@ canvas {
 a:hover, button:hover, input:hover {
     cursor: url('https://i.imgur.com/kca1Y8e.png'), pointer;
 }
-button, a, input {
+* {
     cursor: url('https://i.imgur.com/ON0NZbx.png'), pointer;
 }
 .sliderbutton {
