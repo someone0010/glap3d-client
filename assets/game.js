@@ -474,7 +474,14 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                             material = new THREE.MeshLambertMaterial({map:liveModuleT,emissiveMap:liveModuleT,emissive:0x222222});
                     }
                     var mesh = new THREE.Mesh(geometry, material);
-                    mesh.add(new THREE.PointLight(0xfa0000, 1, 20));
+                    var pl = new THREE.PointLight(0xfa0000, 1, 50);
+                    pl.castShadow = true;
+                    pl.shadow.mapSize.width = 1024;
+                    pl.shadow.mapSize.height = 1024;
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+                    mesh.add(pl);
+                    
                     mesh.userData.id = obj.i;
                     if (obj.t == 0) {
                         mesh.userData.instance = obj.n;
