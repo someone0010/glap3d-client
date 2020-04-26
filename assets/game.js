@@ -168,7 +168,7 @@ class player {
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement)
         renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.shadowMap.type = THREE.PCFShadowMap;
         switch (settingsData["flt"].current) {
             case 0:
                 renderer.toneMapping = THREE.NoToneMapping;
@@ -382,7 +382,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             scene.add(e);
             if (i!=0) {
             e.castShadow = true;
-            //e.receiveShadow = true;
+            e.receiveShadow = true;
             }
         })
         scene.add(alight);
