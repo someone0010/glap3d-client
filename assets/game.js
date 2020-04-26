@@ -381,7 +381,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         planets.forEach((e,i) => {
             scene.add(e);
             if (i==0) return;
-            e.castShadow = true;
+            //e.castShadow = true;
             e.receiveShadow = true;
         })
         scene.add(alight);
