@@ -382,7 +382,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             scene.add(e);
             if (i!=0) {
             e.castShadow = true;
-            e.receiveShadow = true;
+            //e.receiveShadow = true;
             }
         })
         scene.add(alight);
