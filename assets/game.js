@@ -286,70 +286,70 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             emissiveMap: sunT,
             emissive: 0xffffff,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/sun/sun_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/sun/sun_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/sun/sun_nor.png") : null)
         })
         var mercL = new THREE.MeshStandardMaterial({
             map: mercT,
             emissiveMap: mercT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/merc/merc_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/merc/merc_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/merc/merc_nor.png") : null)
         })
         var vensL = new THREE.MeshStandardMaterial({
             map: vensT,
             emissiveMap: vensT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/vens/vens_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/vens/vens_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/vens/vens_nor.png") : null)
         })
         var erthL = new THREE.MeshStandardMaterial({
             map: erthT,
             emissiveMap: erthT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/erth/erth_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/erth/erth_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/erth/erth_nor.png") : null)
         })
         var marsL = new THREE.MeshStandardMaterial({
             map: marsT,
             emissiveMap: marsT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/mars/mars_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/mars/mars_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/mars/mars_nor.png") : null)
         })
         var juptL = new THREE.MeshStandardMaterial({
             map: juptT,
             emissiveMap: juptT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/jupt/jupt_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/jupt/jupt_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/jupt/jupt_nor.png") : null)
         })
         var strnL = new THREE.MeshStandardMaterial({
             map: strnT,
             emissiveMap: strnT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/strn/strn_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/strn/strn_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/strn/strn_nor.png") : null)
         })
         var urnsL = new THREE.MeshStandardMaterial({
             map: urnsT,
             emissiveMap: urnsT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/urns/urns_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/urns/urns_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/urns/urns_nor.png") : null)
         })
         var neptL = new THREE.MeshStandardMaterial({
             map: neptT,
             emissiveMap: neptT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/nept/nept_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/nept/nept_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/nept/nept_nor.png") : null)
         })
         var moonL = new THREE.MeshStandardMaterial({
             map: moonT,
             emissiveMap: moonT,
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/moon/moon_ao.png") : null),
-            norMap: ((settingsData["ptd"].current) ? txtl.load("assets/moon/moon_nor.png") : null)
+            normalMap: ((settingsData["ptd"].current) ? txtl.load("assets/moon/moon_nor.png") : null)
         })
 
         var sunM = new THREE.Mesh(sunG, sunL);
