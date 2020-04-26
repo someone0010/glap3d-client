@@ -29,7 +29,7 @@
 }
 body {
     margin: 0;
-    font-family: "Lilita One" !important;
+    font-family: "Lilita One",sans-serif;
     color: white;
     font-weight: 100;
     font-size: 18px;
