@@ -532,7 +532,7 @@ function animate() {
         _uiDOMElements.other.glapIoTk.style.display = "none";
         let arraybuffer = new ArrayBuffer(16);
         let dv = new DataView(arraybuffer);
-        let name = _uiDOMElements.menu.playerName.slice(0, 15);
+        let name = _uiDOMElements.menu.playerName.value.slice(0, 15);
 
         let encodedName = _textencoder.encode(name);
         encodedName.forEach((e, i) => {
