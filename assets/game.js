@@ -55,23 +55,23 @@ function log(text) {
 }
 function animate() {
     requestAnimationFrame(animate);
-    camera.rotation.x = Math.sin(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.x;
-    camera.rotation.y = -Math.sin(thisPlayer.cameraRotation.x) * zoomOut + thisPlayer.position.y;
-    camera.rotation.z = Math.cos(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.z;
-    composer.render();
-    gameData.fps++;
+    _camera.rotation.x = Math.sin(_thisPlayer.cameraRotation.y) * Math.sin(_thisPlayer.cameraRotation.x + PI_2) * _zoomOut + _thisPlayer.position.x;
+    _camera.rotation.y = -Math.sin(_thisPlayer.cameraRotation.x) * _zoomOut + _thisPlayer.position.y;
+    _camera.rotation.z = Math.cos(_thisPlayer.cameraRotation.y) * Math.sin(_thisPlayer.cameraRotation.x + PI_2) * _zoomOut + _thisPlayer.position.z;
+    _composer.render();
+    _gameData.fps++;
     let perfnow = performance.now();
-    if (perfnow - renderLastSecond >= 1000) {
-        renderLastSecond = perfnow;
+    if (perfnow - _renderLastSecond >= 1000) {
+        _renderLastSecond = perfnow;
 
-        stats.innerHTML = getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" +gameData.playersOnline + " players online</span>";
-        gameData.fps = 0;
-        gameData.bandwidth = 0;
+        stats.innerHTML = getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + _gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + _gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (_gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + _gameData.playersOnline + " players online</span>";
+        _gameData.fps = 0;
+        _gameData.bandwidth = 0;
     }
 
-    if (renderLastTime) gameData.lastRender = perfnow - renderLastTime;
-    renderLastTime = perfnow;
-    if (!renderLastSecond) renderLastSecond = perfnow;
+    if (_renderLastTime) _gameData.lastRender = perfnow - renderLastTime;
+    _renderLastTime = perfnow;
+    if (!_renderLastSecond) _renderLastSecond = perfnow;
 }
     function init(gameServerUrl) {
         _uiDOMElements.menu.joinButton.disabled = true;
