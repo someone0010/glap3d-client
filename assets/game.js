@@ -335,7 +335,7 @@ class player {
         let alight = new THREE.PointLight(0xffffff, 1, 0, 1);
         this._scene.add(alight);
 
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(10000, 64, 64), this._defaultMaterial_planet);
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(10000, 64, 64), this._defaultMaterial_planet));
         this._planets[0].material.emissive = 0xffffff;
         this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(100, 64, 64), this._defaultMaterial_planet));
         this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(125, 64, 64), this._defaultMaterial_planet));
