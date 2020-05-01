@@ -61,7 +61,7 @@ class player {
             alert("Your graphics card/browser doesn't support WebGL!");
             return;
         }
-        this._initializeUIElements();
+        //this._initializeUIElements();
         this._initializeSettingsService();
         this._initializeWebGL();
         this._setFilter(this._settingsData.flt.current);
@@ -282,7 +282,7 @@ class player {
         })
     }
     _initializeUIElements() { //
-        _uiDOMElements = {
+        /*_uiDOMElements = {
             gauges: {
                 power: {
                     state: document.getElementById("power_state"),
@@ -312,7 +312,7 @@ class player {
             other: {
                 glapIoTk: document.getElementById("glap-seo-opt")
             }
-        }
+        }*/
     }
     _setFilter(filt) { //
         switch (filt) {
