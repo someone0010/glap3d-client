@@ -473,9 +473,10 @@ function animate() {
 
     function onWindowResize() {
         _camera.aspect = window.innerWidth / window.innerHeight;
+        _camera.updateProjectionMatrix();
         _renderer.setSize(window.innerWidth, window.innerHeight);
         _composer.setSize(window.innerWidth, window.innerHeight);
-        _camera.updateProjectionMatrix();
+        
     }
     function canvasOnClickPointerlock() {
         if (_thisPlayer.instance == 0) return;
@@ -506,7 +507,7 @@ function animate() {
         document.addEventListener('mousemove', pointerLockMouseMove, false);
         document.addEventListener('pointerlockchange', pointerLockChange, false);
         document.addEventListener('click', canvasOnClickPointerlock, false);
-        document.addEventListener('resize', onWindowResize, false);
+        window.addEventListener('resize', onWindowResize, false);
     }
     function _skySphereInit() {
         _skysphere = new THREE.Mesh(new THREE.SphereBufferGeometry(160000, 256, 256), new THREE.MeshBasicMaterial({
