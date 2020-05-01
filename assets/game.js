@@ -694,6 +694,7 @@ class player {
     _renderLastSecond = null
     _renderLastTime = null
     animate() {
+        console.log(this);
         requestAnimationFrame(this.animate);
         this._camera.rotation.x = Math.sin(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.x;
         this._camera.rotation.y = -Math.sin(this._thisPlayer.cameraRotation.x) * this._zoomOut + this._thisPlayer.position.y;
