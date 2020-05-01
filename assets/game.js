@@ -53,68 +53,57 @@ function log(text) {
     }
 
 }
-class player {
-    constructor(gameServerUrl) {
-        this._uiDOMElements.menu.joinButton.disabled = true;
+function animate() {
+    requestAnimationFrame(animate);
+    camera.rotation.x = Math.sin(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.x;
+    camera.rotation.y = -Math.sin(thisPlayer.cameraRotation.x) * zoomOut + thisPlayer.position.y;
+    camera.rotation.z = Math.cos(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.z;
+    composer.render();
+    gameData.fps++;
+    let perfnow = performance.now();
+    if (perfnow - renderLastSecond >= 1000) {
+        renderLastSecond = perfnow;
+
+        stats.innerHTML = getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" +gameData.playersOnline + " players online</span>";
+        gameData.fps = 0;
+        gameData.bandwidth = 0;
+    }
+
+    if (renderLastTime) gameData.lastRender = perfnow - renderLastTime;
+    renderLastTime = perfnow;
+    if (!renderLastSecond) renderLastSecond = perfnow;
+}
+    function init(gameServerUrl) {
+        _uiDOMElements.menu.joinButton.disabled = true;
         document.getElementById("join-button").querySelector("div").innerText = "Loading..";
-        if (!this._checkWebGL()) {
+        if (!_checkWebGL()) {
             alert("Your graphics card/browser doesn't support WebGL!");
             return;
         }
-        //this._initializeUIElements();
-        this._initializeSettingsService();
-        this._initializeWebGL();
-        this._setFilter(this._settingsData.flt.current);
-        this._makeObjects();
-        this._skySphereInit();
-        this._setupEventListeners();
-        this._applyTextures({
-            quality: this._settingsData["gq"].current,
-            skyquality: this._settingsData["sk"].current
+        //_initializeUIElements();
+        _initializeSettingsService();
+        _initializeWebGL();
+        _setFilter(_settingsData.flt.current);
+        _makeObjects();
+        _skySphereInit();
+        _setupEventListeners();
+        _applyTextures({
+            quality: _settingsData["gq"].current,
+            skyquality: _settingsData["sk"].current
         });
-        this._initializePostprocessing({
-            aa: this._settingsData.aa.current > 0,
-            depthOfField: !!this._settingsData.dof.current,
-            aaPreset: this._settingsData.aa.current-1,
-            godrays: !!this._settingsData.gd.current,
-            bloom: !!this._settingsData.bl.current
+        _initializePostprocessing({
+            aa: _settingsData.aa.current > 0,
+            depthOfField: !!_settingsData.dof.current,
+            aaPreset: _settingsData.aa.current-1,
+            godrays: !!_settingsData.gd.current,
+            bloom: !!_settingsData.bl.current
         });
 
-        this.openGameButton();
-        if (gameServerUrl) this._serverUrl = gameServerUrl;
-        let camera = this._camera;
-        let thisPlayer = this._thisPlayer;
-        let composer = this._composer;
-        let gameData = this._gameData;
-        let renderLastSecond = this._renderLastSecond;
-        let renderLastTime = this._renderLastTime;
-        let zoomOut = this._zoomOut;
-        let getTime = this.getTime;
-        let PI_2 = Math.PI / 2;
-        function animate() {
-        requestAnimationFrame(animate);
-        camera.rotation.x = Math.sin(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.x;
-        camera.rotation.y = -Math.sin(thisPlayer.cameraRotation.x) * zoomOut + thisPlayer.position.y;
-        camera.rotation.z = Math.cos(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.z;
-        composer.render();
-        gameData.fps++;
-        let perfnow = performance.now();
-        if (perfnow - renderLastSecond >= 1000) {
-            renderLastSecond = perfnow;
-
-            stats.innerHTML = getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" +gameData.playersOnline + " players online</span>";
-            gameData.fps = 0;
-            gameData.bandwidth = 0;
-        }
-
-        if (renderLastTime) gameData.lastRender = perfnow - renderLastTime;
-        renderLastTime = perfnow;
-        if (!renderLastSecond) renderLastSecond = perfnow;
+        openGameButton();
+        
     }
-        animate();
-    }
-    _settingsOn = false
-    _uiDOMElements = {
+    var _settingsOn = false
+    var _uiDOMElements = {
         gauges: {
             power: {
                 state: document.getElementById("power_state"),
@@ -145,7 +134,7 @@ class player {
             glapIoTk: document.getElementById("glap-seo-opt")
         }
     }
-    _settingsData = {
+    var _settingsData = {
         "gq": {
             setting: ["Low", "Medium", "High", "Ultra"],
             current: 3,
@@ -198,42 +187,42 @@ class player {
         }
     }
 
-    _isLocked = false
+    var _isLocked = false
 
-    _renderer = null
-    _scene = null
-    _camera = null
-    _composer = null
+    var _renderer = null
+    var _scene = null
+    var _camera = null
+    var _composer = null
 
-    _serverUrl = "wss://server.glap3d.ga"
+    var _serverUrl = "wss://server.glap3d.ga"
 
-    _planets = []
-    _skysphere = null
+    var _planets = []
+    var _skysphere = null
 
-    _textureLoader = new THREE.TextureLoader()
+    var _textureLoader = new THREE.TextureLoader()
 
-    _defaultMaterial_planet = new THREE.MeshStandardMaterial({
+    var _defaultMaterial_planet = new THREE.MeshStandardMaterial({
         emissive: 0x222222
     })
-    _defaultMaterial_module = new THREE.MeshStandardMaterial({
+    var _defaultMaterial_module = new THREE.MeshStandardMaterial({
         emissive: 0x111111
     })
 
-    _thisPlayer = {
+    var _thisPlayer = {
         instance: 0,
         position: new THREE.Vector3(0, 0, 0),
         cameraRotation: new THREE.Euler(0, 0, 0, "YXZ"),
         bestVelocity: 0
     }
-    _gameData = {
+    var _gameData = {
         bandwidth: 0,
         lastRender: performance.now(),
         playersOnline: 0,
         fps: 0
     }
-    PI_2 = Math.PI / 2
+    var PI_2 = Math.PI / 2
 
-    _checkWebGL() { //
+    function _checkWebGL() { //
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -245,17 +234,17 @@ class player {
         }
         return true;
     }
-    _initializeWebGL() { //
-        this._scene = new THREE.Scene();
-        this._camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
-        this._renderer = new THREE.WebGLRenderer({
+    function _initializeWebGL() { //
+        _scene = new THREE.Scene();
+        _camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
+        _renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true
         });
-        this._renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(this._renderer.domElement);
+        _renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(_renderer.domElement);
     }
 
-    _initializeSettingsService() { //
+    function _initializeSettingsService() { //
         let loadedsettings = JSON.parse(localStorage.getItem("settingsData")) || {
             "gq": 1,
             "sk": 1,
@@ -276,42 +265,42 @@ class player {
             localStorage.setItem("settingsData", JSON.stringify(i));
         }
         for (let [key, val] of Object.entries(loadedsettings)) {
-            this._settingsData[key].current = val;
+            _settingsData[key].current = val;
         }
 
         document.querySelector("div.reload-alert").style.display = "none";
-        for (let [key, val] of Object.entries(this._settingsData)) {
-            this._settingsData[key].textelem = document.getElementById(key + "_text");
-            this._settingsData[key].textelem.innerText = this._settingsData[key].setting[this._settingsData[key].current];
+        for (let [key, val] of Object.entries(_settingsData)) {
+            _settingsData[key].textelem = document.getElementById(key + "_text");
+            _settingsData[key].textelem.innerText = _settingsData[key].setting[_settingsData[key].current];
             document.getElementById(key + "_left").addEventListener("click", function () {
-                this._settingsData[key].current = Math.max(0, this._settingsData[key].current - 1);
-                this._settingsData[key].textelem.innerText = this._settingsData[key].setting[this._settingsData[key].current];
+                _settingsData[key].current = Math.max(0, _settingsData[key].current - 1);
+                _settingsData[key].textelem.innerText = _settingsData[key].setting[_settingsData[key].current];
             })
             document.getElementById(key + "_right").addEventListener("click", function () {
-                this._settingsData[key].current = Math.min(this._settingsData[key].setting.length - 1, this._settingsData[key].current + 1);
-                this._settingsData[key].textelem.innerText = this._settingsData[key].setting[this._settingsData[key].current];
+                _settingsData[key].current = Math.min(_settingsData[key].setting.length - 1, _settingsData[key].current + 1);
+                _settingsData[key].textelem.innerText = _settingsData[key].setting[_settingsData[key].current];
             })
         }
-        this._settingsOn = false;
+        _settingsOn = false;
         document.getElementById("settings-button").addEventListener("click", () => {
-            this._settingsOn = true;
+            _settingsOn = true;
             document.querySelector(".settings").style.display = "block";
         })
         document.getElementById("cancel-button").addEventListener("click", () => {
-            this._settingsOn = false;
+            _settingsOn = false;
             document.querySelector(".settings").style.display = "none";
         })
         document.getElementById("apply-button").addEventListener("click", () => {
             var i = {};
-            for (let [key, val] of Object.entries(this._settingsData)) {
+            for (let [key, val] of Object.entries(_settingsData)) {
                 i[key] = val.current;
             }
             localStorage.setItem("settingsData", JSON.stringify(i));
-            this._settingsOn = false;
+            _settingsOn = false;
             document.querySelector(".settings").style.display = "none";
         })
     }
-    _initializeUIElements() { //
+    function  _initializeUIElements() { //
         /*_uiDOMElements = {
             gauges: {
                 power: {
@@ -331,7 +320,6 @@ class player {
             menu: {
                 playerName: document.getElementById("playername"),
                 joinButton: document.getElementById("join-button")
-
             },
             settings: {
                 settings: document.getElementById("settings"),
@@ -344,46 +332,46 @@ class player {
             }
         }*/
     }
-    _setFilter(filt) { //
+    function _setFilter(filt) { //
         switch (filt) {
             case 0:
-                this._renderer.toneMapping = THREE.NoToneMapping;
+                _renderer.toneMapping = THREE.NoToneMapping;
                 break;
             case 1:
-                this._renderer.toneMapping = THREE.LinearToneMapping;
+                _renderer.toneMapping = THREE.LinearToneMapping;
                 break;
             case 2:
-                this._renderer.toneMapping = THREE.ReinhardToneMapping;
+                _renderer.toneMapping = THREE.ReinhardToneMapping;
                 break;
             case 3:
-                this._renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                _renderer.toneMapping = THREE.ACESFilmicToneMapping;
                 break;
         }
     }
-    _makeObjects() { //
+    function _makeObjects() { //
         let alight = new THREE.PointLight(0xffffff, 1, 0, 1);
-        this._scene.add(alight);
+        _scene.add(alight);
 
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(10000, 64, 64), this._defaultMaterial_planet));
-        this._planets[0].material.emissive = 0xffffff;
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(100, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(125, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(150, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(137.5, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(2500, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(750, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(1000, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(600, 64, 64), this._defaultMaterial_planet));
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(50, 64, 64), this._defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(10000, 64, 64), _defaultMaterial_planet));
+        _planets[0].material.emissive = 0xffffff;
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(100, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(125, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(150, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(137.5, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(2500, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(750, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(1000, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(600, 64, 64), _defaultMaterial_planet));
+        _planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(50, 64, 64), _defaultMaterial_planet));
 
-        this._planets.forEach(e => {
-            this._scene.add(e);
+        _planets.forEach(e => {
+            _scene.add(e);
         })
 
 
 
     }
-    _applyTextures(settings) { //
+    function _applyTextures(settings) { //
         let textureQualityHttpEnder;
         switch (settings.quality) {
             case 0:
@@ -414,175 +402,174 @@ class player {
                 skysphereQuality = "_ultra.png";
                 break;
         }
-        this.applyTextureAsync("assets/sun/sun" + textureQualityHttpEnder, this._planets[0], true, true, false, false)
-        this.applyTextureAsync("assets/merc/merc" + textureQualityHttpEnder, this._planets[1], true, true, false, false)
-        this.applyTextureAsync("assets/vens/vens" + textureQualityHttpEnder, this._planets[2], true, true, false, false)
-        this.applyTextureAsync("assets/erth/erth" + textureQualityHttpEnder, this._planets[3], true, true, false, false)
-        this.applyTextureAsync("assets/mars/mars" + textureQualityHttpEnder, this._planets[4], true, true, false, false)
-        this.applyTextureAsync("assets/jupt/jupt" + textureQualityHttpEnder, this._planets[5], true, true, false, false)
-        this.applyTextureAsync("assets/strn/strn" + textureQualityHttpEnder, this._planets[6], true, true, false, false)
-        this.applyTextureAsync("assets/urns/urns" + textureQualityHttpEnder, this._planets[7], true, true, false, false)
-        this.applyTextureAsync("assets/nept/nept" + textureQualityHttpEnder, this._planets[8], true, true, false, false)
-        this.applyTextureAsync("assets/moon/moon" + textureQualityHttpEnder, this._planets[9], true, true, false, false)
+        applyTextureAsync("assets/sun/sun" + textureQualityHttpEnder, _planets[0], true, true, false, false)
+        applyTextureAsync("assets/merc/merc" + textureQualityHttpEnder, _planets[1], true, true, false, false)
+        applyTextureAsync("assets/vens/vens" + textureQualityHttpEnder, _planets[2], true, true, false, false)
+        applyTextureAsync("assets/erth/erth" + textureQualityHttpEnder, _planets[3], true, true, false, false)
+        applyTextureAsync("assets/mars/mars" + textureQualityHttpEnder, _planets[4], true, true, false, false)
+        applyTextureAsync("assets/jupt/jupt" + textureQualityHttpEnder, _planets[5], true, true, false, false)
+        applyTextureAsync("assets/strn/strn" + textureQualityHttpEnder, _planets[6], true, true, false, false)
+        applyTextureAsync("assets/urns/urns" + textureQualityHttpEnder, _planets[7], true, true, false, false)
+        applyTextureAsync("assets/nept/nept" + textureQualityHttpEnder, _planets[8], true, true, false, false)
+        applyTextureAsync("assets/moon/moon" + textureQualityHttpEnder, _planets[9], true, true, false, false)
 
-        this.applyTextureAsync("assets/sun/sun_ao.png", this._planets[0], false, false, true, true)
-        this.applyTextureAsync("assets/merc/merc_ao.png", this._planets[1], false, false, true, true)
-        this.applyTextureAsync("assets/vens/vens_ao.png", this._planets[2], false, false, true, true)
-        this.applyTextureAsync("assets/erth/erth_ao.png", this._planets[3], false, false, true, true)
-        this.applyTextureAsync("assets/mars/mars_ao.png", this._planets[4], false, false, true, true)
-        this.applyTextureAsync("assets/jupt/jupt_ao.png", this._planets[5], false, false, true, true)
-        this.applyTextureAsync("assets/strn/strn_ao.png", this._planets[6], false, false, true, true)
-        this.applyTextureAsync("assets/urns/urns_ao.png", this._planets[7], false, false, true, true)
-        this.applyTextureAsync("assets/nept/nept_ao.png", this._planets[8], false, false, true, true)
-        this.applyTextureAsync("assets/moon/moon_ao.png", this._planets[9], false, false, true, true)
+        applyTextureAsync("assets/sun/sun_ao.png", _planets[0], false, false, true, true)
+        applyTextureAsync("assets/merc/merc_ao.png", _planets[1], false, false, true, true)
+        applyTextureAsync("assets/vens/vens_ao.png", _planets[2], false, false, true, true)
+        applyTextureAsync("assets/erth/erth_ao.png", _planets[3], false, false, true, true)
+        applyTextureAsync("assets/mars/mars_ao.png", _planets[4], false, false, true, true)
+        applyTextureAsync("assets/jupt/jupt_ao.png", _planets[5], false, false, true, true)
+        applyTextureAsync("assets/strn/strn_ao.png", _planets[6], false, false, true, true)
+        applyTextureAsync("assets/urns/urns_ao.png", _planets[7], false, false, true, true)
+        applyTextureAsync("assets/nept/nept_ao.png", _planets[8], false, false, true, true)
+        applyTextureAsync("assets/moon/moon_ao.png", _planets[9], false, false, true, true)
 
-        this.applyTextureAsync("assets/starfield/starfield" + skysphereQuality, this._skysphere, true, false, false, false);
+        applyTextureAsync("assets/starfield/starfield" + skysphereQuality, _skysphere, true, false, false, false);
     }
-    applyTextureAsync(url, target, isMap, isEmissive, isAO, isDisplacement) {
-        this._textureLoader.load(url, function (texture) {
+    function applyTextureAsync(url, target, isMap, isEmissive, isAO, isDisplacement) {
+        _textureLoader.load(url, function (texture) {
             if (isMap) target.material.map = texture;
             if (isEmissive) target.material.emissiveMap = texture;
             if (isAO) target.material.aoMap = texture;
             if (isDisplacement) target.material.displacementMap = texture;
         })
     }
-    _initializePostprocessing(settings = {
+    function _initializePostprocessing(settings = {
         aa: true,
         depthOfField: true,
         aaPreset: 3,
         godrays: true,
         bloom: true
     }) { //
-        this._composer = new POSTPROCESSING.EffectComposer(this._renderer);
-        this._composer.addPass(new POSTPROCESSING.RenderPass(this._scene, this._camera));
+        _composer = new POSTPROCESSING.EffectComposer(_renderer);
+        _composer.addPass(new POSTPROCESSING.RenderPass(_scene, _camera));
 
         if (settings.aa) {
             let areaImage = new Image();
             areaImage.src = POSTPROCESSING.SMAAEffect.areaImageDataURL;
             let searchImage = new Image();
             searchImage.src = POSTPROCESSING.SMAAEffect.searchImageDataURL;
-            this._composer.addPass(new POSTPROCESSING.EffectPass(this._camera, new POSTPROCESSING.SMAAEffect(searchImage, areaImage, settings.aaPreset, POSTPROCESSING.EdgeDetectionMode.DEPTH)));
+            _composer.addPass(new POSTPROCESSING.EffectPass(_camera, new POSTPROCESSING.SMAAEffect(searchImage, areaImage, settings.aaPreset, POSTPROCESSING.EdgeDetectionMode.DEPTH)));
         }
 
         if (settings.depthOfField) {
-            let dof = new POSTPROCESSING.DepthOfFieldEffect(this._camera);
+            let dof = new POSTPROCESSING.DepthOfFieldEffect(_camera);
             dof.renderToScreen = true;
-            this._composer.addPass(new POSTPROCESSING.EffectPass(this._camera, dof));
+            _composer.addPass(new POSTPROCESSING.EffectPass(_camera, dof));
         }
 
         if (settings.godrays) {
-            let gd = new POSTPROCESSING.GodRaysEffect(this._camera, this._planets[0]);
+            let gd = new POSTPROCESSING.GodRaysEffect(_camera, _planets[0]);
             gd.renderToScreen = true;
-            this._composer.addPass(new POSTPROCESSING.EffectPass(gd));
+            _composer.addPass(new POSTPROCESSING.EffectPass(gd));
         }
 
         if (settings.bloom) {
             let bl = new POSTPROCESSING.BloomEffect();
             bl.renderToScreen = true;
-            this._composer.addPass(new POSTPROCESSING.EffectPass(bl));
+            _composer.addPass(new POSTPROCESSING.EffectPass(bl));
         }
     }
 
-    onWindowResize() {
-        this._camera.aspect = window.innerWidth / window.innerHeight;
-        this._renderer.setSize(window.innerWidth, window.innerHeight);
-        this._composer.setSize(window.innerWidth, window.innerHeight);
-        this._camera.updateProjectionMatrix();
+    function onWindowResize() {
+        _camera.aspect = window.innerWidth / window.innerHeight;
+        _renderer.setSize(window.innerWidth, window.innerHeight);
+        _composer.setSize(window.innerWidth, window.innerHeight);
+        _camera.updateProjectionMatrix();
     }
-    canvasOnClickPointerlock() {
-        if (this._thisPlayer.instance == 0) return;
-        this._renderer.domElement.requestPointerLock();
+    function canvasOnClickPointerlock() {
+        if (_thisPlayer.instance == 0) return;
+        _renderer.domElement.requestPointerLock();
     }
-    pointerLockMouseMove(ev) {
-        if (!this._isLocked) return;
+    function pointerLockMouseMove(ev) {
+        if (!_isLocked) return;
         let movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
         let movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
-        this._thisPlayer.cameraRotation.setFromQuaternion(this._camera.quaternion);
-        this._thisPlayer.cameraRotation.y -= movementX * 0.002;
-        this._thisPlayer.cameraRotation.x -= movementY * 0.002;
-        this._thisPlayer.cameraRotation.x = Math.max(-this.PI_2, Math.min(this.PI_2, this._thisPlayer.cameraRotation.x));
-        this._camera.quaternion.setFromEuler(this._thisPlayer.cameraRotation);
+        _thisPlayer.cameraRotation.setFromQuaternion(_camera.quaternion);
+        _thisPlayer.cameraRotation.y -= movementX * 0.002;
+        _thisPlayer.cameraRotation.x -= movementY * 0.002;
+        _thisPlayer.cameraRotation.x = Math.max(-PI_2, Math.min(PI_2, _thisPlayer.cameraRotation.x));
+        _camera.quaternion.setFromEuler(_thisPlayer.cameraRotation);
         //todo uint8 network 4, ex, ey
         let arraybuffer = new ArrayBuffer(16);
         let dv = new DataView(arraybuffer);
-        let name = this._uiDOMElements.menu.playerName.slice(0, 15);
+        let name = _uiDOMElements.menu.playerName.slice(0, 15);
     }
-    pointerLockChange() {
-        if (document.pointerLockElement == this._renderer.domElement) {
-            this._isLocked = true;
+    function pointerLockChange() {
+        if (document.pointerLockElement == _renderer.domElement) {
+            _isLocked = true;
         } else {
-            this._isLocked = false;
+            _isLocked = false;
         }
     }
-    _setupEventListeners() {
-        document.addEventListener('mousemove', this.pointerLockMouseMove, false);
-        document.addEventListener('pointerlockchange', this.pointerLockChange, false);
-        document.addEventListener('click', this.canvasOnClickPointerlock, false);
-        document.addEventListener('resize', this.onWindowResize, false);
+    function _setupEventListeners() {
+        document.addEventListener('mousemove', pointerLockMouseMove, false);
+        document.addEventListener('pointerlockchange', pointerLockChange, false);
+        document.addEventListener('click', canvasOnClickPointerlock, false);
+        document.addEventListener('resize', onWindowResize, false);
     }
-    _skySphereInit() {
-        this._skysphere = new THREE.Mesh(new THREE.SphereBufferGeometry(160000, 256, 256), new THREE.MeshBasicMaterial({
+    function _skySphereInit() {
+        _skysphere = new THREE.Mesh(new THREE.SphereBufferGeometry(160000, 256, 256), new THREE.MeshBasicMaterial({
             side: THREE.BackSide
         }));
-        this._scene.add(this._skysphere);
+        _scene.add(_skysphere);
     }
 
-    _textures = [
-        this._textureLoader.load("assets/modules/heart.png")
+    var _textures = [
+        _textureLoader.load("assets/modules/heart.png")
     ]
 
-    _wsInit(serverUrl) {
-        this._ws = new WebSocket("wss://server.glap3d.ga");
-        this._ws.binaryType = "arraybuffer";
-        this._ws.onclose = this.wsOnClose;
-        this._ws.onopen = this.wsOnOpen;
-        this._ws.onerror = this.wsOnError;
-        this._ws.onmessage = this.wsOnMessage;
+    function _wsInit(serverUrl) {
+        _ws = new WebSocket("wss://server.glap3d.ga");
+        _ws.binaryType = "arraybuffer";
+        _ws.onclose = wsOnClose;
+        _ws.onopen = wsOnOpen;
+        _ws.onerror = wsOnError;
+        _ws.onmessage = wsOnMessage;
     }
-    _joinGame() {
-        this._uiDOMElements.other.glapIoTk.style.display = "none";
+    function _joinGame() {
+        _uiDOMElements.other.glapIoTk.style.display = "none";
         let arraybuffer = new ArrayBuffer(16);
         let dv = new DataView(arraybuffer);
-        let name = this._uiDOMElements.menu.playerName.slice(0, 15);
+        let name = _uiDOMElements.menu.playerName.slice(0, 15);
 
-        let encodedName = this._textencoder.encode(name);
+        let encodedName = _textencoder.encode(name);
         encodedName.forEach((e, i) => {
             dv.setUint8(i + 1, e);
         })
 
-        this._ws.send(arraybuffer);
+        _ws.send(arraybuffer);
     }
-    wsOnOpen() {
-        this._uiDOMElements.menu.joinButton.innerHTML = "Join";
-        let self = this;
-        this._uiDOMElements.menu.joinButton.addEventListener("click", function () {
-            self._joinGame();
+    function wsOnOpen() {
+        _uiDOMElements.menu.joinButton.innerHTML = "Join";
+        _uiDOMElements.menu.joinButton.addEventListener("click", function () {
+            _joinGame();
         })
     }
-    wsOnClose(reason) {
+    function wsOnClose(reason) {
         log("Code: " + reason.code);
     }
-    wsOnError() {
+    function wsOnError() {
         log("CONNECTION ERROR!")
     }
 
-    const_planetlength = 10
-    const_planetbytelength = 13
-    const_objectbytelength = 24
+    const const_planetlength = 10
+    const const_planetbytelength = 13
+    const const_objectbytelength = 24
 
-    _textencoder = new TextEncoder("utf-8")
-    _textdecoder = new TextDecoder("utf-8")
+    var _textencoder = new TextEncoder("utf-8")
+    var _textdecoder = new TextDecoder("utf-8")
 
-    wsOnMessage(message) {
+    function wsOnMessage(message) {
         var u8 = new Uint8Array(message);
-        this._gameData.bandwidth += u8.byteLength;
+        _gameData.bandwidth += u8.byteLength;
         switch (u8[0]) {
             case 0:
-                this._thisPlayer.instance = u8[1] + (u8[2] << 8);
+                _thisPlayer.instance = u8[1] + (u8[2] << 8);
                 break;
             case 1:
                 for (i = 0; i < u8[1]; i++) {
-                    let v = (this.const_planetbytelength * i) + 1;
+                    let v = (const_planetbytelength * i) + 1;
                     let id = u8[1 + v] + (u8[2 + v] << 8);
                     if (i != id) {
                         throw new Error("Loop index and planet index are not correct. / " + id + " != " + i);
@@ -594,12 +581,12 @@ class player {
                     if (sign.slice(-1) == "1") x *= -1;
                     if (sign.slice(-2, -1) == "1") x *= -1;
 
-                    this._planets[id].position.x = x;
-                    this._planets[id].position.z = z;
+                    _planets[id].position.x = x;
+                    _planets[id].position.z = z;
                 }
-                let ofs = this.const_planetlength * this.const_planetbytelength + 2
+                let ofs = const_planetlength * const_planetbytelength + 2
                 for (i = 0; i < u8[ofs] + (u8[ofs + 1] << 8); i++) {
-                    let v = ofs + i * this.const_objectbytelength;
+                    let v = ofs + i * const_objectbytelength;
                     let id = u8[22 + v] + (u8[23 + v] << 8);
                     if (u8[id] != i) {
                         throw new Error("Loop index and object index are not correct. / " + id + " != " + i);
@@ -627,16 +614,16 @@ class player {
 
                     let owner = u8[20 + v] + (u8[21 + v] << 8);
 
-                    this._scene.children.forEach(e => {
+                    _scene.children.forEach(e => {
                         if (e.userData.id == id) {
                             e.position = pos;
                             e.quaternion = quat;
-                            if (owner == this._thisPlayer.instance && u8[19 + v] == 0) {
-                                this._thisPlayer.position = pos;
+                            if (owner == _thisPlayer.instance && u8[19 + v] == 0) {
+                                _thisPlayer.position = pos;
 
-                                this._uiDOMElements.gauges.rotation.pitch.innerText = "PITCH: " + (e.rotation.x * (180 / Math.PI)).toFixed(2);
-                                this._uiDOMElements.gauges.rotation.yaw.innerText = "YAW: " + (e.rotation.y * (180 / Math.PI)).toFixed(2);
-                                this._uiDOMElements.gauges.rotation.roll.innerText = "ROLL: " + (e.rotation.z * (180 / Math.PI)).toFixed(2);
+                                _uiDOMElements.gauges.rotation.pitch.innerText = "PITCH: " + (e.rotation.x * (180 / Math.PI)).toFixed(2);
+                                _uiDOMElements.gauges.rotation.yaw.innerText = "YAW: " + (e.rotation.y * (180 / Math.PI)).toFixed(2);
+                                _uiDOMElements.gauges.rotation.roll.innerText = "ROLL: " + (e.rotation.z * (180 / Math.PI)).toFixed(2);
                             }
 
                         }
@@ -648,10 +635,10 @@ class player {
                 switch (u8[1]) {
                     case 0:
                         geometry = new THREE.BoxBufferGeometry(10, 10, 10);
-                        material = this._defaultMaterial_planet;
+                        material = _defaultMaterial_planet;
                 }
-                material.map = this._textures[u8[1]];
-                material.emissiveMap = this._textures[u8[1]];
+                material.map = _textures[u8[1]];
+                material.emissiveMap = _textures[u8[1]];
                 let mesh = new THREE.Mesh(geometry, material);
                 mesh.rotation.order = "YXZ";
                 mesh.userData.id = u8[2] + (u8[3] << 8);
@@ -659,15 +646,15 @@ class player {
                     mesh.add(new THREE.PointLight(0xfa0000, 1, 50));
                     mesh.userData.instance = u8[4] + (u8[5] << 8);
                 }
-                this._scene.add(mesh);
+                _scene.add(mesh);
                 break;
 
             case 3:
-                log("<span style=\"color:gold\">" + this._textdecoder.decode(new Uint8Array(u8.slice(3, 15))) + " joined the game</span>");
+                log("<span style=\"color:gold\">" + _textdecoder.decode(new Uint8Array(u8.slice(3, 15))) + " joined the game</span>");
                 break;
             case 4:
-                log("<span style=\"color:gold\">" + this._textdecoder.decode(new Uint8Array(u8.slice(1, 15))) + " left the game</span>");
-                this._scene.children.forEach((e, i) => {
+                log("<span style=\"color:gold\">" + _textdecoder.decode(new Uint8Array(u8.slice(1, 15))) + " left the game</span>");
+                _scene.children.forEach((e, i) => {
                     if (e.userData.owner == u8[16] + (u8[17] << 8) || e.userData.instance == u8[16] + (u8[17] << 8)) scene.remove(scene.children[i]);
                 })
                 break;
@@ -678,69 +665,70 @@ class player {
                 let power = u8[1] + (u8[2] << 8) + (u8[3] << 16) + (u8[4] << 24);
                 let maxPower = u8[5] + (u8[6] << 8) + (u8[7] << 16) + (u8[8] << 24);
                 let velocity = u8[9] + (u8[10] << 8) + (u8[11] << 16) + (u8[12] << 24);
-                this._uiDOMElements.gauges.power.state.innerHTML = "POWER: " + power + " / " + maxPower;
-                this._uiDOMElements.gauges.power.visual.style.width = "" + (power / maxPower * 100) + "%";
-                this._uiDOMElements.gauges.velocity.state.innerHTML = "VELOCITY: " + velocity;
-                this._thisPlayer.bestVelocity = Math.max(this._thisPlayer.bestVelocity, velocity);
-                var i = velocity / this._thisPlayer.bestVelocity * 100;
-                this._uiDOMElements.gauges.velocity.visual.style.width = i + "%";
+                _uiDOMElements.gauges.power.state.innerHTML = "POWER: " + power + " / " + maxPower;
+                _uiDOMElements.gauges.power.visual.style.width = "" + (power / maxPower * 100) + "%";
+                _uiDOMElements.gauges.velocity.state.innerHTML = "VELOCITY: " + velocity;
+                _thisPlayer.bestVelocity = Math.max(_thisPlayer.bestVelocity, velocity);
+                var i = velocity / _thisPlayer.bestVelocity * 100;
+                _uiDOMElements.gauges.velocity.visual.style.width = i + "%";
                 if (i < 5) {
-                    this._uiDOMElements.gauges.velocity.state.style.color = "rgb(163, 14, 0)";
+                    _uiDOMElements.gauges.velocity.state.style.color = "rgb(163, 14, 0)";
                 } else if (i < 20) {
-                    this._uiDOMElements.gauges.velocity.state.style.color = "rgb(252, 186, 3)";
+                    _uiDOMElements.gauges.velocity.state.style.color = "rgb(252, 186, 3)";
                 } else {
-                    this._uiDOMElements.gauges.velocity.state.style.color = "white";
+                    _uiDOMElements.gauges.velocity.state.style.color = "white";
                 }
                 break;
             case 7:
-                this._gameData.playersOnline = u8[1] + (u8[2] << 8);
+                _gameData.playersOnline = u8[1] + (u8[2] << 8);
                 break;
         }
         return false;
     }
 
-    currentlyActiveKeys = []
+    var currentlyActiveKeys = []
 
-    onKeyDown(e) {
-        if (!this._isLocked || this.currentlyActiveKeys[e.keyCode]) return;
-        this.currentlyActiveKeys[e.keyCode] = !0;
+    function onKeyDown(e) {
+        if (!_isLocked || currentlyActiveKeys[e.keyCode]) return;
+        currentlyActiveKeys[e.keyCode] = !0;
         let ab = new ArrayBuffer(2);
         let dv = new DataView(ab);
         dv.setUint8(0, 1);
         dv.setUint8(1, e.keyCode);
-        this._ws.send(ab);
+        _ws.send(ab);
     }
-    onKeyUp(e) {
-        if (!this._isLocked) return;
-        this.currentlyActiveKeys[e.keyCode] = !1;
+    function onKeyUp(e) {
+        if (!_isLocked) return;
+        currentlyActiveKeys[e.keyCode] = !1;
         let ab = new ArrayBuffer(2);
         let dv = new DataView(ab);
         dv.setUint8(0, 2);
         dv.setUint8(1, e.keyCode);
-        this._ws.send(ab);
+        _ws.send(ab);
     }
-    _zoomOut = 60
-    _renderLastSecond = null
-    _renderLastTime = null
+    var _zoomOut = 60
+    var _renderLastSecond = null
+    var _renderLastTime = null
     
-    getTime() {
+    function getTime() {
         let today = new Date();
         let h = today.getHours();
         let m = today.getMinutes();
         let s = today.getSeconds();
-        m = this.checkNum(m);
-        s = this.checkNum(s);
+        m = checkNum(m);
+        s = checkNum(s);
         return h + ":" + m + ":" + s;
     }
-    checkNum(i) {
+    function checkNum(i) {
         if (i < 10) {
             i = "0" + i;
         }
         return i;
     }
-    openGameButton() {
-        this._uiDOMElements.menu.joinButton.querySelector("div").innerText = "Join";
-        this._uiDOMElements.menu.joinButton.disabled = false;
+    function openGameButton() {
+        _uiDOMElements.menu.joinButton.querySelector("div").innerText = "Join";
+        _uiDOMElements.menu.joinButton.disabled = false;
     }
-}
-var game = new player("wss://server.glap3d.ga");
+
+init("wss://server.glap3d.ga");
+animate();
