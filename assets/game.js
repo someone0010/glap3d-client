@@ -82,7 +82,7 @@ class player {
 
         this.openGameButton();
         if (gameServerUrl) this._serverUrl = gameServerUrl;
-        let camera = this.camera;
+        let camera = this._camera;
         let thisPlayer = this._thisPlayer;
         let composer = this._composer;
         let gameData = this._gameData;
