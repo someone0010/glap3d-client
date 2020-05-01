@@ -317,16 +317,16 @@ class player {
     _setFilter(filt) { //
         switch (filt) {
             case 0:
-                renderer.toneMapping = THREE.NoToneMapping;
+                this._renderer.toneMapping = THREE.NoToneMapping;
                 break;
             case 1:
-                renderer.toneMapping = THREE.LinearToneMapping;
+                this._renderer.toneMapping = THREE.LinearToneMapping;
                 break;
             case 2:
-                renderer.toneMapping = THREE.ReinhardToneMapping;
+                this._renderer.toneMapping = THREE.ReinhardToneMapping;
                 break;
             case 3:
-                renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                this._renderer.toneMapping = THREE.ACESFilmicToneMapping;
                 break;
         }
     }
