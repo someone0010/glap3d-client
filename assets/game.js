@@ -223,6 +223,7 @@ class player {
             logarithmicDepthBuffer: true
         });
         this._renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(this._renderer.domElement);
     }
 
     _initializeSettingsService() { //
@@ -334,17 +335,17 @@ class player {
         let alight = new THREE.PointLight(0xffffff, 1, 0, 1);
         this._scene.add(alight);
 
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(10000, 64, 64)), this._defaultMaterial_planet);
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(10000, 64, 64), this._defaultMaterial_planet);
         this._planets[0].material.emissive = 0xffffff;
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(100, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(125, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(150, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(137.5, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(2500, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(750, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(1000, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(600, 64, 64)), this._defaultMaterial_planet);
-        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(50, 64, 64)), this._defaultMaterial_planet);
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(100, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(125, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(150, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(137.5, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(2500, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(750, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(1000, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(600, 64, 64), this._defaultMaterial_planet));
+        this._planets.push(new THREE.Mesh(new THREE.SphereBufferGeometry(50, 64, 64), this._defaultMaterial_planet));
 
         this._planets.forEach(e => {
             this._scene.add(e);
@@ -494,7 +495,7 @@ class player {
         this._skysphere = new THREE.Mesh(new THREE.SphereBufferGeometry(160000, 256, 256), new THREE.MeshBasicMaterial({
             side: THREE.BackSide
         }));
-        scene.add(this._skysphere);
+        this._scene.add(this._skysphere);
     }
 
     _textures = [
@@ -564,8 +565,8 @@ class player {
                     if (sign.slice(-1) == "1") x *= -1;
                     if (sign.slice(-2, -1) == "1") x *= -1;
 
-                    planets[id].position.x = x;
-                    planets[id].position.z = z;
+                    this._planets[id].position.x = x;
+                    this._planets[id].position.z = z;
                 }
                 let ofs = this.const_planetlength * this.const_planetbytelength + 2
                 for (i = 0; i < u8[ofs] + (u8[ofs + 1] << 8); i++) {
