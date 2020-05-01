@@ -98,7 +98,7 @@ function animate() {
             godrays: !!_settingsData.gd.current,
             bloom: !!_settingsData.bl.current
         });
-
+        _wsInit(gameServerUrl);
         openGameButton();
         
     }
