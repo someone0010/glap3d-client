@@ -425,7 +425,7 @@ class player {
         bloom: true
     }) { //
         this._composer = new POSTPROCESSING.EffectComposer(this._renderer);
-        this._composer.addPass(new POSTPROCESSING.RenderPass(this._scene, this._renderer));
+        this._composer.addPass(new POSTPROCESSING.RenderPass(this._scene, this._camera));
 
         if (settings.aa) {
             let areaImage = new Image();
