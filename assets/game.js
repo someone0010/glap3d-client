@@ -442,7 +442,7 @@ class player {
         }
 
         if (settings.godrays) {
-            let gd = new POSTPROCESSING.GodRaysEffect(this._camera, this._planetsData["sun"].mesh);
+            let gd = new POSTPROCESSING.GodRaysEffect(this._camera, this._planets[0]);
             gd.renderToScreen = true;
             this._composer.addPass(new POSTPROCESSING.EffectPass(gd));
         }
