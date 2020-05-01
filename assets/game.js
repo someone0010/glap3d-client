@@ -250,16 +250,16 @@ class player {
         }
 
         document.querySelector("div.reload-alert").style.display = "none";
-        for (let [key, val] of Object.entries(settingsData)) {
-            settingsData[key].textelem = document.getElementById(key + "_text");
-            settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
+        for (let [key, val] of Object.entries(this._settingsData)) {
+            this._settingsData[key].textelem = document.getElementById(key + "_text");
+            this._settingsData[key].textelem.innerText = this._settingsData[key].setting[this._settingsData[key].current];
             document.getElementById(key + "_left").addEventListener("click", function () {
-                settingsData[key].current = Math.max(0, settingsData[key].current - 1);
-                settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
+                this._settingsData[key].current = Math.max(0, this._settingsData[key].current - 1);
+                this._settingsData[key].textelem.innerText = this._settingsData[key].setting[this._settingsData[key].current];
             })
             document.getElementById(key + "_right").addEventListener("click", function () {
-                settingsData[key].current = Math.min(settingsData[key].setting.length - 1, settingsData[key].current + 1);
-                settingsData[key].textelem.innerText = settingsData[key].setting[settingsData[key].current];
+                this._settingsData[key].current = Math.min(this._settingsData[key].setting.length - 1, this._settingsData[key].current + 1);
+                this._settingsData[key].textelem.innerText = this._settingsData[key].setting[this._settingsData[key].current];
             })
         }
         this._settingsOn = false;
@@ -273,7 +273,7 @@ class player {
         })
         document.getElementById("apply-button").addEventListener("click", () => {
             var i = {};
-            for (let [key, val] of Object.entries(settingsData)) {
+            for (let [key, val] of Object.entries(this._settingsData)) {
                 i[key] = val.current;
             }
             localStorage.setItem("settingsData", JSON.stringify(i));
