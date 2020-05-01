@@ -80,9 +80,30 @@ class player {
             bloom: !!this._settingsData.bl.current
         });
 
-        this.animate();
         this.openGameButton();
         if (gameServerUrl) this._serverUrl = gameServerUrl;
+        
+        function animate() {
+        requestAnimationFrame(animate);
+        this._camera.rotation.x = Math.sin(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.x;
+        this._camera.rotation.y = -Math.sin(this._thisPlayer.cameraRotation.x) * this._zoomOut + this._thisPlayer.position.y;
+        this._camera.rotation.z = Math.cos(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.z;
+        this._composer.render();
+        this._gameData.fps++;
+        let perfnow = performance.now();
+        if (perfnow - this._renderLastSecond >= 1000) {
+            this._renderLastSecond = perfnow;
+
+            stats.innerHTML = this.getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + this._gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + this._gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (this._gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + this._gameData.playersOnline + " players online</span>";
+            this._gameData.fps = 0;
+            this._gameData.bandwidth = 0;
+        }
+
+        if (this._renderLastTime) this._gameData.lastRender = perfnow - this._renderLastTime;
+        this._renderLastTime = perfnow;
+        if (!this._renderLastSecond) this._renderLastSecond = perfnow;
+    }
+        animate();
     }
     _settingsOn = false
     _uiDOMElements = {
@@ -693,27 +714,7 @@ class player {
     _zoomOut = 60
     _renderLastSecond = null
     _renderLastTime = null
-    animate() {
-        console.log(this);
-        requestAnimationFrame(this.animate);
-        this._camera.rotation.x = Math.sin(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.x;
-        this._camera.rotation.y = -Math.sin(this._thisPlayer.cameraRotation.x) * this._zoomOut + this._thisPlayer.position.y;
-        this._camera.rotation.z = Math.cos(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.z;
-        this._composer.render();
-        this._gameData.fps++;
-        let perfnow = performance.now();
-        if (perfnow - this._renderLastSecond >= 1000) {
-            this._renderLastSecond = perfnow;
-
-            stats.innerHTML = this.getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + this._gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + this._gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (this._gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + this._gameData.playersOnline + " players online</span>";
-            this._gameData.fps = 0;
-            this._gameData.bandwidth = 0;
-        }
-
-        if (this._renderLastTime) this._gameData.lastRender = perfnow - this._renderLastTime;
-        this._renderLastTime = perfnow;
-        if (!this._renderLastSecond) this._renderLastSecond = perfnow;
-    }
+    
     getTime() {
         let today = new Date();
         let h = today.getHours();
