@@ -82,26 +82,34 @@ class player {
 
         this.openGameButton();
         if (gameServerUrl) this._serverUrl = gameServerUrl;
-        
+        let camera = this.camera;
+        let thisPlayer = this._thisPlayer;
+        let composer = this._composer;
+        let gameData = this._gameData;
+        let renderLastSecond = this._renderLastSecond;
+        let renderLastTime = this._renderLastTime;
+        let zoomOut = this._zoomOut;
+        let getTime = this.getTime;
+        let PI_2 = Math.PI / 2;
         function animate() {
         requestAnimationFrame(animate);
-        this._camera.rotation.x = Math.sin(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.x;
-        this._camera.rotation.y = -Math.sin(this._thisPlayer.cameraRotation.x) * this._zoomOut + this._thisPlayer.position.y;
-        this._camera.rotation.z = Math.cos(this._thisPlayer.cameraRotation.y) * Math.sin(this._thisPlayer.cameraRotation.x + this.PI_2) * this._zoomOut + this._thisPlayer.position.z;
-        this._composer.render();
-        this._gameData.fps++;
+        camera.rotation.x = Math.sin(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.x;
+        camera.rotation.y = -Math.sin(thisPlayer.cameraRotation.x) * zoomOut + thisPlayer.position.y;
+        camera.rotation.z = Math.cos(thisPlayer.cameraRotation.y) * Math.sin(thisPlayer.cameraRotation.x + PI_2) * zoomOut + thisPlayer.position.z;
+        composer.render();
+        gameData.fps++;
         let perfnow = performance.now();
-        if (perfnow - this._renderLastSecond >= 1000) {
-            this._renderLastSecond = perfnow;
+        if (perfnow - renderLastSecond >= 1000) {
+            renderLastSecond = perfnow;
 
-            stats.innerHTML = this.getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + this._gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + this._gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (this._gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + this._gameData.playersOnline + " players online</span>";
-            this._gameData.fps = 0;
-            this._gameData.bandwidth = 0;
+            stats.innerHTML = getTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + gameData.lastRender.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + gameData.fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + (gameData.bandwidth / 1024).toFixed(1) + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" +gameData.playersOnline + " players online</span>";
+            gameData.fps = 0;
+            gameData.bandwidth = 0;
         }
 
-        if (this._renderLastTime) this._gameData.lastRender = perfnow - this._renderLastTime;
-        this._renderLastTime = perfnow;
-        if (!this._renderLastSecond) this._renderLastSecond = perfnow;
+        if (renderLastTime) gameData.lastRender = perfnow - renderLastTime;
+        renderLastTime = perfnow;
+        if (!renderLastSecond) renderLastSecond = perfnow;
     }
         animate();
     }
