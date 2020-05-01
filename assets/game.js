@@ -57,7 +57,7 @@ class player {
     constructor(gameServerUrl) {
         this._uiDOMElements.menu.joinButton.disabled = true;
         document.getElementById("join-button").querySelector("div").innerText = "Loading..";
-        if (this._checkWebGL()) {
+        if (!this._checkWebGL()) {
             alert("Your graphics card/browser doesn't support WebGL!");
             return;
         }
