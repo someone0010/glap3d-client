@@ -69,7 +69,7 @@ function animate() {
         _gameData.bandwidth = 0;
     }
 
-    if (_renderLastTime) _gameData.lastRender = perfnow - renderLastTime;
+    if (_renderLastTime) _gameData.lastRender = perfnow - _renderLastTime;
     _renderLastTime = perfnow;
     if (!_renderLastSecond) _renderLastSecond = perfnow;
 }
