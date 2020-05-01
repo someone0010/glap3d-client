@@ -427,12 +427,12 @@ function animate() {
         applyTextureAsync("assets/starfield/starfield" + skysphereQuality, _skysphere, true, false, false, false);
     }
     function applyTextureAsync(url, target, isMap, isEmissive, isAO, isDisplacement) {
-        _textureLoader.load(url, function (texture) {
+        let texture = _textureLoader.load(url);
             if (isMap) target.material.map = texture;
             if (isEmissive) target.material.emissiveMap = texture;
             if (isAO) target.material.aoMap = texture;
             if (isDisplacement) target.material.displacementMap = texture;
-        })
+        
     }
     function _initializePostprocessing(settings = {
         aa: true,
