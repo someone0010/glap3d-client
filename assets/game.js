@@ -542,6 +542,20 @@ function startTime() {
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
             composer.addPass(renderPass);
             var normal = new POSTPROCESSING.NormalPass(scene, camera);
+	    
+            
+            if (settingsData["bl"].current) {
+            var blme = new POSTPROCESSING.BloomEffect({texture:sunL,intensity:0.6});
+            blme.renderToScreen = true;
+            composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
+            }
+        if (settingsData["gd"].current) {
+            let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
+            godraysEffect.renderToScreen = true;
+            composer.addPass(new POSTPROCESSING.EffectPass(camera, godraysEffect));
+        }
+            // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
+	    composer.addPass(normal);
         if (/*settingsData["ssao"].current*/ true) {
         const ssaoEffect = new POSTPROCESSING.SSAOEffect(camera, normal.renderTarget.texture, {
 			blendFunction: POSTPROCESSING.BlendFunction.MULTIPLY,
@@ -557,18 +571,6 @@ function startTime() {
 		});
         composer.addPass(new POSTPROCESSING.EffectPass(camera, ssaoEffect));
         }
-            composer.addPass(normal);
-            if (settingsData["bl"].current) {
-            var blme = new POSTPROCESSING.BloomEffect({texture:sunL,intensity:0.6});
-            blme.renderToScreen = true;
-            composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
-            }
-        if (settingsData["gd"].current) {
-            let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
-            godraysEffect.renderToScreen = true;
-            composer.addPass(new POSTPROCESSING.EffectPass(camera, godraysEffect));
-        }
-            // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
         if (settingsData["dof"].current) {
             var dof1 = new POSTPROCESSING.DepthOfFieldEffect(camera);
             dof1.renderToScreen = true;
