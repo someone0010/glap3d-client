@@ -555,7 +555,7 @@ function startTime() {
 			scale: 1.0,
 			bias: 0.05
 		});
-        composer.addPass(new POSTPROCESSING.EffectPass(camera, ssaoEffect);
+        composer.addPass(new POSTPROCESSING.EffectPass(camera, ssaoEffect));
         }
             composer.addPass(normal);
             if (settingsData["bl"].current) {
