@@ -518,6 +518,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                     
                     break;
             }
+            return false;
         }
 
 function checkTime(i) {
