@@ -543,8 +543,8 @@ function startTime() {
             composer.addPass(renderPass);
             var normal = new POSTPROCESSING.NormalPass(scene, camera);
         if (/*settingsData["ssao"].current*/ true) {
-        const ssaoEffect = new SSAOEffect(camera, normal.renderTarget.texture, {
-			blendFunction: BlendFunction.MULTIPLY,
+        const ssaoEffect = new POSTPROCESSING.SSAOEffect(camera, normal.renderTarget.texture, {
+			blendFunction: POSTPROCESSING.BlendFunction.MULTIPLY,
 			samples: 11,
 			rings: 4,
 			distanceFalloff: 0.0025,	// with an additional ~2.5 units of falloff.
