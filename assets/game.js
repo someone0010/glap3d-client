@@ -541,6 +541,23 @@ function startTime() {
             var composer = new POSTPROCESSING.EffectComposer(renderer);
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
             composer.addPass(renderPass);
+            var normal = new POSTPROCESSING.NormalPass(scene, camera);
+        if (/*settingsData["ssao"].current*/ true) {
+        const ssaoEffect = new SSAOEffect(camera, normal.renderTarget.texture, {
+			blendFunction: BlendFunction.MULTIPLY,
+			samples: 11,
+			rings: 4,
+			distanceFalloff: 0.0025,	// with an additional ~2.5 units of falloff.
+			rangeThreshold: 0.0003,		// Occlusion proximity of ~0.3 world units
+			rangeFalloff: 0.0001,			// with ~0.1 units of falloff.
+			luminanceInfluence: 0.7,
+			radius: 30,
+			scale: 1.0,
+			bias: 0.05
+		});
+        composer.addPass(new POSTPROCESSING.EffectPass(camera, ssaoEffect);
+        }
+            composer.addPass(normal);
             if (settingsData["bl"].current) {
             var blme = new POSTPROCESSING.BloomEffect({texture:sunL,intensity:0.6});
             blme.renderToScreen = true;
