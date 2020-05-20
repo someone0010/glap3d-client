@@ -441,7 +441,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
 							if (!gameBegan && e.c == chosenZoomPlanet) {
 								camera.position.x = e.x;
 								camera.position.z = e.z;
-								camera.lookAt(planets[0]);
+								camera.lookAt(planets[0].position);
 							}
                         } catch {
 
