@@ -144,6 +144,7 @@ class player {
     }
 
     init() {
+	    var gameBegan = false;
         var canvas = document.createElement("canvas");
         if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
             if (window.WebGLRenderingContext) {
@@ -417,6 +418,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             activekeys[e.keyCode] = false;
             ws.send(JSON.stringify([0,e.key,false]))
         })
+		var chosenZoomPlanet = Math.floor(Math.random() * 7) + 1;
         var eu = new THREE.Euler(0,0,0,"YXZ");
         var kbs = 0;
         var playercount = 0;
@@ -427,13 +429,20 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             switch (json[0]) {
                 case 0:
                     myinstance = json[1];
+		    		gameBegan = true;
                     break;
                 case 1:
                     json[1].forEach((e, i) => {
                         if (i == 0) return;
                         try {
+							
                             planets[e.c].position.x = e.x;
                             planets[e.c].position.z = e.z;
+							if (!gameBegan && e.c == chosenZoomPlanet) {
+								camera.position.x = e.x;
+								camera.position.z = e.z;
+								camera.lookAt(planets[0]);
+							}
                         } catch {
 
                         }
@@ -448,7 +457,7 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
                                     f.quaternion.y = e.qy,
                                     f.quaternion.z = e.qz,
                                     f.quaternion.w = e.qw;
-                                if (e.t == 0) {
+                                if (e.t == 0 && gameBegan) {
                                     if (e.n == myinstance) {
                                         
                                         
@@ -598,9 +607,11 @@ let searchImage = new Image();
         var ms = 0;
         function animate() {
             requestAnimationFrame(animate);
+		if (gameBegan) {
             camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerX;
             camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerZ;
             camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
+		}
             composer.render();
             fps++;
             if (performance.now() - lastSecond >= 1000) {
