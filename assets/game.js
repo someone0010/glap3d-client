@@ -606,7 +606,8 @@ let searchImage = new Image();
         var fps = 0;
         var ms = 0;
         function animate() {
-            requestAnimationFrame(animate);
+            //requestAnimationFrame(animate);
+		queueMicrotask(animate);
 		if (gameBegan) {
             camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerX;
             camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerZ;
