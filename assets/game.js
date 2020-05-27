@@ -606,7 +606,7 @@ let searchImage = new Image();
         var fps = 0;
         var ms = 0;
         function animate() {
-            //requestAnimationFrame(animate);
+            
 		
 		if (gameBegan) {
             camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerX;
@@ -624,7 +624,7 @@ let searchImage = new Image();
             if (lastTime) ms = performance.now() - lastTime;
             lastTime = performance.now();
             if (!lastSecond) lastSecond = performance.now();
-		queueMicrotask(animate);
+		requestAnimationFrame(animate);
         }
         animate();
         window.planets = planets;
