@@ -169,12 +169,15 @@ if (gl) {
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
         setInterval(this.everysecond, 1000);
+	var canvas = document.createElement("canvas");
+	var gl = canvas.getContext("webgl2");
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
-            powerPreference: "high-performance"
+            powerPreference: "high-performance",
+	    context: gl
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement)
+        document.body.appendChild(canvas)
         //renderer.shadowMap.enabled = true;
         //renderer.shadowMap.type = THREE.PCFShadowMap;
         switch (settingsData["flt"].current) {
