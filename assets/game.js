@@ -128,6 +128,13 @@ document.getElementById("apply-button").addEventListener("click", () => {
 })
 document.getElementById("join-button").querySelector("div").innerText = "Loading..";
 
+
+
+const downscale = 64;
+
+
+
+
 function log(text) {
     if (logger.innerHTML.endsWith(text + "</div>")) {
         logger.lastChild.textContent = logger.lastChild.textContent + " (x2)"
@@ -270,16 +277,16 @@ class player {
         //
 
         var planets = [];
-        var sunG = new THREE.SphereBufferGeometry(10000, 64, 64);
-        var mercG = new THREE.SphereBufferGeometry(100, 64, 64);
-        var vensG = new THREE.SphereBufferGeometry(125, 64, 64);
-        var erthG = new THREE.SphereBufferGeometry(150, 64, 64);
-        var marsG = new THREE.SphereBufferGeometry(137.5, 64, 64);
-        var juptG = new THREE.SphereBufferGeometry(2500, 64, 64);
-        var strnG = new THREE.SphereBufferGeometry(750, 64, 64);
-        var urnsG = new THREE.SphereBufferGeometry(1000, 64, 64);
-        var neptG = new THREE.SphereBufferGeometry(600, 64, 64);
-        var moonG = new THREE.SphereBufferGeometry(50, 64, 64);
+        var sunG = new THREE.SphereBufferGeometry(10000 / downscale, 64, 64);
+        var mercG = new THREE.SphereBufferGeometry(100 / downscale, 64, 64);
+        var vensG = new THREE.SphereBufferGeometry(125 / downscale, 64, 64);
+        var erthG = new THREE.SphereBufferGeometry(150 / downscale, 64, 64);
+        var marsG = new THREE.SphereBufferGeometry(137.5 / downscale, 64, 64);
+        var juptG = new THREE.SphereBufferGeometry(2500 / downscale, 64, 64);
+        var strnG = new THREE.SphereBufferGeometry(750 / downscale, 64, 64);
+        var urnsG = new THREE.SphereBufferGeometry(1000 / downscale, 64, 64);
+        var neptG = new THREE.SphereBufferGeometry(600 / downscale, 64, 64);
+        var moonG = new THREE.SphereBufferGeometry(50 / downscale, 64, 64);
 
         function getURLByQuality(base, quality) {
             switch (quality) {
@@ -536,7 +543,7 @@ class player {
                     alight.shadow.mapSize.height = 2048;
         scene.add(alight);
 
-        var skySphereG = new THREE.SphereBufferGeometry(160000, 256, 256);
+        var skySphereG = new THREE.SphereBufferGeometry(160000 / downscale, 256, 256);
         var skySphereL = new THREE.MeshBasicMaterial({
             map: textureArray[20]
         });
@@ -593,11 +600,11 @@ class player {
                         if (i == 0) return;
                         try {
 
-                            planets[e.c].position.x = e.x;
-                            planets[e.c].position.z = e.z;
+                            planets[e.c].position.x = e.x / downscale;
+                            planets[e.c].position.z = e.z / downscale;
                             if (!gameBegan && e.c == chosenZoomPlanet) {
-                                camera.position.x = e.x;
-                                camera.position.z = e.z;
+                                camera.position.x = e.x / downscale;
+                                camera.position.z = e.z / downscale;
                                 camera.lookAt(planets[0].position);
                             }
                         } catch {
@@ -607,9 +614,9 @@ class player {
                     json[2].forEach((e) => {
                         scene.children.forEach(f => {
                             if (f.userData.id == e.i) {
-                                f.position.x = e.x,
-                                    f.position.y = e.y,
-                                    f.position.z = e.z,
+                                f.position.x = e.x / downscale,
+                                    f.position.y = e.y / downscale,
+                                    f.position.z = e.z / downscale,
                                     f.quaternion.x = e.qx,
                                     f.quaternion.y = e.qy,
                                     f.quaternion.z = e.qz,
@@ -636,7 +643,7 @@ class player {
                     var material;
                     switch (obj.t) {
                         default:
-                            geometry = new THREE.BoxBufferGeometry(10, 10, 10);
+                            geometry = new THREE.BoxBufferGeometry(10 / downscale, 10 / downscale, 10 / downscale);
 
                             material = new THREE.MeshStandardMaterial({
                                 map: liveModuleT,
@@ -780,8 +787,8 @@ class player {
 
 
             if (gameBegan) {
-                camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerX;
-                camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * zoomValue + lastPlayerZ;
+                camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * (zoomValue / downscale) + lastPlayerX;
+                camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * (zoomValue / downscale) + lastPlayerZ;
                 camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
             }
             composer.render();
