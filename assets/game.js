@@ -516,7 +516,7 @@ class player {
         planets.push(neptM);
         planets.push(moonM);
         //
-        loadingText.innerHTML = "Loading assets (6/12)"
+        loadingText.innerHTML = "Finishing up world (6/12)"
         //
         var alight = new THREE.PointLight(0xffffff, 1, 0, 1);
         alight.castShadow = true;
@@ -537,7 +537,7 @@ class player {
         var skySphereM = new THREE.Mesh(skySphereG, skySphereL);
         scene.add(skySphereM);
 
-        var liveModuleT = txtl.load("assets/modules/heart.png");
+        var liveModuleT = TLoader.load("assets/modules/heart.png");
         //
         loadingText.innerHTML = "Estabilishing connection (7/12)"
         //
