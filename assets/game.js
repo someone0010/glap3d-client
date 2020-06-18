@@ -131,6 +131,7 @@ document.getElementById("join-button").querySelector("div").innerText = "Loading
 
 
 const downscale = 64;
+const detail = 192;
 
 
 
@@ -277,16 +278,16 @@ class player {
         //
 
         var planets = [];
-        var sunG = new THREE.SphereBufferGeometry(10000 / downscale, 64, 64);
-        var mercG = new THREE.SphereBufferGeometry(100 / downscale, 64, 64);
-        var vensG = new THREE.SphereBufferGeometry(125 / downscale, 64, 64);
-        var erthG = new THREE.SphereBufferGeometry(150 / downscale, 64, 64);
-        var marsG = new THREE.SphereBufferGeometry(137.5 / downscale, 64, 64);
-        var juptG = new THREE.SphereBufferGeometry(2500 / downscale, 64, 64);
-        var strnG = new THREE.SphereBufferGeometry(750 / downscale, 64, 64);
-        var urnsG = new THREE.SphereBufferGeometry(1000 / downscale, 64, 64);
-        var neptG = new THREE.SphereBufferGeometry(600 / downscale, 64, 64);
-        var moonG = new THREE.SphereBufferGeometry(50 / downscale, 64, 64);
+        var sunG = new THREE.SphereBufferGeometry(10000 / downscale, detail, detail);
+        var mercG = new THREE.SphereBufferGeometry(100 / downscale, detail, detail);
+        var vensG = new THREE.SphereBufferGeometry(125 / downscale, detail, detail);
+        var erthG = new THREE.SphereBufferGeometry(150 / downscale, detail, detail);
+        var marsG = new THREE.SphereBufferGeometry(137.5 / downscale, detail, detail);
+        var juptG = new THREE.SphereBufferGeometry(2500 / downscale, detail, detail);
+        var strnG = new THREE.SphereBufferGeometry(750 / downscale, detail, detail);
+        var urnsG = new THREE.SphereBufferGeometry(1000 / downscale, detail, detail);
+        var neptG = new THREE.SphereBufferGeometry(600 / downscale, detail, detail);
+        var moonG = new THREE.SphereBufferGeometry(50 / downscale, detail, detail);
 
         function getURLByQuality(base, quality) {
             switch (quality) {
@@ -789,7 +790,7 @@ class player {
             if (gameBegan) {
                 camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * (zoomValue / downscale) + lastPlayerX;
                 camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * (zoomValue / downscale) + lastPlayerZ;
-                camera.position.y = -Math.sin(euler.x) * zoomValue + lastPlayerY;
+                camera.position.y = -Math.sin(euler.x) * (zoomValue / downscale) + lastPlayerY;
             }
             composer.render();
             fps++;
