@@ -521,7 +521,7 @@ class player {
         //
         loadingText.innerHTML = "Finishing up world (6/12)"
         //
-        var alight = new THREE.PointLight(0xffffff, 1, 0, 1);
+        var alight = new THREE.PointLight(0xffffff, 1, 0, 0.000001);
         alight.castShadow = true;
         alight.shadow.camera.near = 0.1;
         alight.shadow.camera.far = 100000;
