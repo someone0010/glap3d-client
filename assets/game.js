@@ -170,7 +170,7 @@ if (gl) {
         var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
         setInterval(this.everysecond, 1000);
 	var canvas = document.createElement("canvas");
-	var gl = canvas.getContext("webgl2");
+	var gl = canvas.getContext("webgl2", {alpha: false} );
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
             powerPreference: "high-performance",
