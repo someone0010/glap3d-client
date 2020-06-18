@@ -174,7 +174,8 @@ if (gl) {
         var renderer = new THREE.WebGLRenderer({
             logarithmicDepthBuffer: true,
             powerPreference: "high-performance",
-	    context: gl
+	    context: gl,
+	    canvas: canvas
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(canvas)
