@@ -144,17 +144,28 @@ class player {
     }
 
     init() {
+	    var canvas = document.createElement('canvas');
+var gl;
+var debugInfo;
+var vendor;
+var renderer;
+
+try {
+  gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+} catch (e) {
+}
+
+if (gl) {
+  debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+  vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+  renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+} else {
+	log("Your graphics card or your browser doesn't support WebGL. Please upgrade your browser/hardware and try again.");
+	return;
+}
+
 	    var gameBegan = false;
-        var canvas = document.createElement("canvas");
-        if (!(canvas.getContext("webgl") && window.WebGLRenderingContext)) {
-            if (window.WebGLRenderingContext) {
-                log("graphics card doesn't support webgl")
-            } else {
-                log("web browser doesn't support webgl")
-            }
-            return;
-        }
-        
+
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
         setInterval(this.everysecond, 1000);
@@ -618,7 +629,7 @@ let searchImage = new Image();
             if (performance.now() - lastSecond >= 1000) {
                 lastSecond = performance.now();
                 
-                stats.innerHTML = startTime() + " <span style='color:rgb(48, 179, 30)'>draw call " + ms.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + kbs + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + playercount + " players online</span>";
+                stats.innerHTML = startTime() + " // " + renderer + " // <span style='color:rgb(48, 179, 30)'>draw call " + ms.toFixed(1) + " ms</span> <span style='color:rgb(22, 127, 219)'>" + fps + " fps</span> <span style='color: rgb(107, 30, 179)'>" + kbs + " kB/s</span> <span style='color:rgb(24, 240, 121)'>" + playercount + " players online</span>";
                 fps = 0;
             }
             if (lastTime) ms = performance.now() - lastTime;
