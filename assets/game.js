@@ -130,7 +130,7 @@ document.getElementById("join-button").querySelector("div").innerText = "Loading
 
 
 
-const downscale = 1024;
+const downscale = 512;
 const detail = 192;
 
 
@@ -242,7 +242,7 @@ class player {
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(canvas)
         renderer.shadowMap.enabled = true;
-        //renderer.shadowMap.type = THREE.PCFShadowMap;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         switch (settingsData["flt"].current) {
             case 0:
                 renderer.toneMapping = THREE.NoToneMapping;
@@ -550,8 +550,8 @@ class player {
             e.receiveShadow = true;
             }
         })
-        alight.shadow.mapSize.width = 2048;
-                    alight.shadow.mapSize.height = 2048;
+        alight.shadow.mapSize.width = 8192;
+                    alight.shadow.mapSize.height = 8192;
         scene.add(alight);
 
         var skySphereG = new THREE.SphereBufferGeometry(160000 / downscale, 256, 256);
