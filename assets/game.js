@@ -678,7 +678,7 @@ let searchImage = new Image();
         window.planets = planets;
         joinButton.querySelector("div").innerText = "Join";
         joinButton.disabled = false;
-	loadScreen.opacity = 0;
+	loadScreen.style.opacity = 0;
 	loadScreen.addEventListener('transitionend', () => loadscreen.remove());
     }
     everysecond() {
