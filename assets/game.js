@@ -552,6 +552,7 @@ class player {
         })
         alight.shadow.mapSize.width = 8192;
                     alight.shadow.mapSize.height = 8192;
+        alight.shadowCameraVisible = true;
         scene.add(alight);
 
         var skySphereG = new THREE.SphereBufferGeometry(160000 / downscale, 256, 256);
