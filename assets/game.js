@@ -130,7 +130,7 @@ document.getElementById("join-button").querySelector("div").innerText = "Loading
 
 
 
-const downscale = 256;
+const downscale = 1024;
 const detail = 192;
 
 
@@ -663,10 +663,8 @@ class player {
                             });
                     }
                     var mesh = new THREE.Mesh(geometry, material);
-                    var pl = new THREE.PointLight(0xfa0000, 1, 50);
+                    var pl = new THREE.PointLight(0xfa0000, 1, 50/downscale);
                     pl.castShadow = true;
-                    pl.shadow.mapSize.width = 1024;
-                    pl.shadow.mapSize.height = 1024;
                     mesh.castShadow = true;
                     mesh.receiveShadow = true;
                     mesh.add(pl);
