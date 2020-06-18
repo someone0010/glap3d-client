@@ -679,7 +679,7 @@ let searchImage = new Image();
         joinButton.querySelector("div").innerText = "Join";
         joinButton.disabled = false;
 	loadScreen.style.opacity = 0;
-	loadScreen.addEventListener('transitionend', () => loadscreen.remove());
+	loadScreen.addEventListener('transitionend', () => loadScreen.remove());
     }
     everysecond() {
 
