@@ -802,7 +802,7 @@ class player {
             joinButton.disabled = false;
             loadScreen.style.opacity = 0;
             loadScreen.addEventListener('transitionend', () => loadScreen.remove());
-        }, 3500);
+        }, 500);
     }
     everysecond() {
 
