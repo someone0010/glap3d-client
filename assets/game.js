@@ -313,7 +313,7 @@ class player {
 
         var TLoader = new THREE.TextureLoader();
         var allPromises = [];
-        var textureArray = [
+        var dataTextureArray = [
             getURLByQuality("assets/sun/sun", settingsData["gq"].current),
             getURLByQuality("assets/merc/merc", settingsData["gq"].current),
             getURLByQuality("assets/vens/vens", settingsData["gq"].current),
@@ -336,7 +336,8 @@ class player {
             "assets/moon/moon_ao.png",
             getURLByQuality("/assets/starfield/starfield", settingsData["sk"].current)
         ]
-        textureArray.forEach(function (jsonMat) {
+        var textureArray = [];
+        dataTextureArray.forEach(function (jsonMat) {
 
             allPromises.push(new Promise(function (resolve, reject) {
 
@@ -366,6 +367,7 @@ class player {
 
         await Promise.all(allPromises)
             .then(function (arrayOfMaterials) {
+                textureArray = arrayOfMaterials;
                 console.log("done!");
             }, function (error) {
                 console.error("Could not load all textures:", error);
@@ -800,7 +802,7 @@ class player {
             joinButton.disabled = false;
             loadScreen.style.opacity = 0;
             loadScreen.addEventListener('transitionend', () => loadScreen.remove());
-        }, 500);
+        }, 3500);
     }
     everysecond() {
 
