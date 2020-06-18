@@ -674,12 +674,14 @@ let searchImage = new Image();
 	    //
 		loadingText.innerHTML = "Done"  
 	//
+	    setTimeout(()=>{
         animate();
         window.planets = planets;
         joinButton.querySelector("div").innerText = "Join";
         joinButton.disabled = false;
 	loadScreen.style.opacity = 0;
 	loadScreen.addEventListener('transitionend', () => loadScreen.remove());
+	    },3500);
     }
     everysecond() {
 
