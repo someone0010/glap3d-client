@@ -2,6 +2,7 @@
     font-family: "Lilita One";
     src: url("./LilitaOne-Regular.ttf");
 }
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 #game-log {
     position: absolute;
     margin: 80px;
