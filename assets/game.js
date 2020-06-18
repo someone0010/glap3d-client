@@ -130,7 +130,7 @@ document.getElementById("join-button").querySelector("div").innerText = "Loading
 
 
 
-const downscale = 64;
+const downscale = 256;
 const detail = 192;
 
 
@@ -431,76 +431,86 @@ class player {
         //
         document.addEventListener('mousemove', onMouseMove, false);
         document.addEventListener('pointerlockchange', onPointerlockChange, false);
-
+        const displacementsc = 0.1;
         var sunL = new THREE.MeshStandardMaterial({
             map: textureArray[0],
             emissiveMap: textureArray[0],
             emissive: 0xffffff,
             aoMap: ((settingsData["ao"].current) ? textureArray[10] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[10] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[10] : null),
+            displacementScale: displacementsc
         })
         var mercL = new THREE.MeshStandardMaterial({
             map: textureArray[1],
             emissiveMap: textureArray[1],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[11] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[11] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[11] : null),
+            displacementScale: displacementsc
         })
         var vensL = new THREE.MeshStandardMaterial({
             map: textureArray[2],
             emissiveMap: textureArray[2],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[12] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[12] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[12] : null),
+            displacementScale: displacementsc
         })
         var erthL = new THREE.MeshStandardMaterial({
             map: textureArray[3],
             emissiveMap: textureArray[3],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[13] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[13] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[13] : null),
+            displacementScale: displacementsc
         })
         var marsL = new THREE.MeshStandardMaterial({
             map: textureArray[4],
             emissiveMap: textureArray[4],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[14] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[14] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[14] : null),
+            displacementScale: displacementsc
         })
         var juptL = new THREE.MeshStandardMaterial({
             map: textureArray[5],
             emissiveMap: textureArray[5],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[15] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[15] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[15] : null),
+            displacementScale: displacementsc
         })
         var strnL = new THREE.MeshStandardMaterial({
             map: textureArray[6],
             emissiveMap: textureArray[6],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[16] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[16] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[16] : null),
+            displacementScale: displacementsc
         })
         var urnsL = new THREE.MeshStandardMaterial({
             map: textureArray[7],
             emissiveMap: textureArray[7],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[17] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[17] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[17] : null),
+            displacementScale: displacementsc
         })
         var neptL = new THREE.MeshStandardMaterial({
             map: textureArray[8],
             emissiveMap: textureArray[8],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[18] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[18] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[18] : null),
+            displacementScale: displacementsc
         })
         var moonL = new THREE.MeshStandardMaterial({
             map: textureArray[9],
             emissiveMap: textureArray[9],
             emissive: 0x111111,
             aoMap: ((settingsData["ao"].current) ? textureArray[19] : null),
-            displacementMap: ((settingsData["ptd"].current) ? textureArray[19] : null)
+            displacementMap: ((settingsData["ptd"].current) ? textureArray[19] : null),
+            displacementScale: displacementsc
         })
         //
         loadingText.innerHTML = "Applying (5/12)"
