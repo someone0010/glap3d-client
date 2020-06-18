@@ -346,6 +346,7 @@ class player {
 
                     function (texture) {
                         // We're done, so tell the promise it is complete
+                        texture.anisotropy = 16;
                         resolve(texture);
                     },
 
@@ -524,11 +525,13 @@ class player {
         alight.castShadow = true;
         planets.forEach((e, i) => {
             scene.add(e);
-            /*if (i!=0) {
+            if (i !== 0) {
             e.castShadow = true;
             e.receiveShadow = true;
-            }*/
+            }
         })
+        alight.shadow.mapSize.width = 2048;
+                    alight.shadow.mapSize.height = 2048;
         scene.add(alight);
 
         var skySphereG = new THREE.SphereBufferGeometry(160000, 256, 256);
@@ -641,11 +644,11 @@ class player {
                     }
                     var mesh = new THREE.Mesh(geometry, material);
                     var pl = new THREE.PointLight(0xfa0000, 1, 50);
-                    /*pl.castShadow = true;
+                    pl.castShadow = true;
                     pl.shadow.mapSize.width = 1024;
                     pl.shadow.mapSize.height = 1024;
                     mesh.castShadow = true;
-                    mesh.receiveShadow = true;*/
+                    mesh.receiveShadow = true;
                     mesh.add(pl);
 
 
