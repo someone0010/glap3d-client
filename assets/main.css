@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "Lilita One";
-    src: url("./LilitaOne-Regular.ttf");
-}
+
 /* cyrillic-ext */
 @font-face {
   font-family: 'Noto Sans';
@@ -95,7 +92,7 @@ body {
     margin: 0;
     font-family: "Lilita One",sans-serif;
     color: white;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 18px;
     cursor: url('https://i.imgur.com/ON0NZbx.png'), pointer;
 }
@@ -187,7 +184,7 @@ canvas {
     margin: 2px solid #000;
     background-color: rgb(24, 26, 27);
     color: rgb(232, 230, 227);
-    font-family: "Lilita One";
+    font-family: "Noto Sans";
 }
 .w300 {
     width: 300px;
@@ -197,7 +194,7 @@ canvas {
 }
 .button {
     transform: skewX(-10deg);
-    font-family: "Lilita One";
+    font-family: "Noto Sans";
 }
 .midtext {
     text-align: center;
