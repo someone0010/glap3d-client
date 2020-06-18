@@ -242,7 +242,7 @@ class player {
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(canvas)
         renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFShadowMap;
+        //renderer.shadowMap.type = THREE.PCFShadowMap;
         switch (settingsData["flt"].current) {
             case 0:
                 renderer.toneMapping = THREE.NoToneMapping;
