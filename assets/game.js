@@ -525,7 +525,7 @@ class player {
         alight.castShadow = true;
         planets.forEach((e, i) => {
             scene.add(e);
-            if (i !== 0) {
+            if (e != sunM) {
             e.castShadow = true;
             e.receiveShadow = true;
             }
