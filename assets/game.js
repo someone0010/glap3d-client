@@ -233,8 +233,8 @@ class player {
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(canvas)
-        //renderer.shadowMap.enabled = true;
-        //renderer.shadowMap.type = THREE.PCFShadowMap;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFShadowMap;
         switch (settingsData["flt"].current) {
             case 0:
                 renderer.toneMapping = THREE.NoToneMapping;
@@ -523,6 +523,8 @@ class player {
         //
         var alight = new THREE.PointLight(0xffffff, 1, 0, 1);
         alight.castShadow = true;
+        alight.shadow.camera.near = 0.1;
+        alight.shadow.camera.far = 100000;
         planets.forEach((e, i) => {
             scene.add(e);
             if (e != sunM) {
