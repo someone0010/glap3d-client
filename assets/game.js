@@ -11,7 +11,9 @@ var powertext = document.getElementById("power_state"),
     rolltext = document.getElementById("roll_state");
 var playerTextName = document.getElementById("playername"),
     joinButton = document.getElementById("join-button"),
-    affiliateGlap = document.getElementById("glap-seo-opt");
+    affiliateGlap = document.getElementById("glap-seo-opt"),
+    loadingText = document.getElementById("loadState"),
+    loadScreen = document.getElementById("splash");
 
     joinButton.disabled = true;
 var dataPool = 0;
@@ -165,7 +167,7 @@ if (gl) {
 }
 
 	    var gameBegan = false;
-
+	
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 400000);
         setInterval(this.everysecond, 1000);
@@ -210,6 +212,11 @@ if (gl) {
         window.addEventListener('resize', onWindowResize, false);
 
         var qualitySetting = "medium";
+	    
+	//
+		loadingText.innerHTML = "Creaing world (2/12)"  
+	//
+	    
         var planets = [];
         var sunG = new THREE.SphereBufferGeometry(10000, 64, 64);
         var mercG = new THREE.SphereBufferGeometry(100, 64, 64);
@@ -234,6 +241,10 @@ if (gl) {
                     return base + "_ultra.png";
             }
         }
+	    
+	    //
+		loadingText.innerHTML = "Loading assets (3/12)"  
+	//
 
         var txtl = new THREE.TextureLoader();
 
@@ -291,6 +302,9 @@ function onPointerlockChange() {
     }
 
 }
+	    //
+		loadingText.innerHTML = "Loading assets (4/12)"  
+	//
 document.addEventListener( 'mousemove', onMouseMove, false );
 document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
 
@@ -364,7 +378,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             aoMap: ((settingsData["ao"].current) ? txtl.load("assets/moon/moon_ao.png") : null),
             displacementMap: ((settingsData["ptd"].current) ? txtl.load("assets/moon/moon_ao.png") : null)
         })
-
+	//
+		loadingText.innerHTML = "Applying (5/12)"  
+	//
         var sunM = new THREE.Mesh(sunG, sunL);
         var mercM = new THREE.Mesh(mercG, mercL);
         var vensM = new THREE.Mesh(vensG, vensL);
@@ -386,7 +402,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         planets.push(urnsM);
         planets.push(neptM);
         planets.push(moonM);
-
+//
+		loadingText.innerHTML = "Loading assets (6/12)"  
+	//
         var alight = new THREE.PointLight(0xffffff, 1, 0, 1);
         alight.castShadow = true;
         planets.forEach((e,i) => {
@@ -408,7 +426,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         scene.add(skySphereM);
 
         var liveModuleT = txtl.load("assets/modules/heart.png");
-        
+        //
+		loadingText.innerHTML = "Estabilishing connection (7/12)"  
+	//
         var ws = new WebSocket(serverUrl);
         window.warws = ws;
         
@@ -423,6 +443,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
         }
         var bestvelocity = 0;
         var activekeys = [];
+	    //
+		loadingText.innerHTML = "Keyboard events (8/12)"  
+	//
         document.addEventListener("keydown", function (e) {
             if (activekeys[e.keyCode] == true || !isLocked) return;
             activekeys[e.keyCode] = true;
@@ -544,7 +567,9 @@ document.addEventListener( 'pointerlockchange', onPointerlockChange, false );
             }
             return false;
         }
-
+//
+		loadingText.innerHTML = "Postprocessing (9/12)"  
+	//
 function checkTime(i) {
   if (i < 10) {
     i = "0" + i;
@@ -561,7 +586,6 @@ function startTime() {
   s = checkTime(s);
   return h + ":" + m + ":" + s;
 }
-        
             var composer = new POSTPROCESSING.EffectComposer(renderer);
             var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
             composer.addPass(renderPass);
@@ -615,11 +639,17 @@ let searchImage = new Image();
             }
             
         }
+	    //
+		loadingText.innerHTML = "Finishing up (10/12)"  
+	//
         var zoomValue = 75;
         var lastTime;
         var lastSecond;
         var fps = 0;
         var ms = 0;
+	    //
+		loadingText.innerHTML = "Init Scene (11/12)"  
+	//
         function animate() {
             
 		
@@ -641,10 +671,15 @@ let searchImage = new Image();
             if (!lastSecond) lastSecond = performance.now();
 		requestAnimationFrame(animate);
         }
+	    //
+		loadingText.innerHTML = "Done"  
+	//
         animate();
         window.planets = planets;
         joinButton.querySelector("div").innerText = "Join";
         joinButton.disabled = false;
+	loadScreen.opacity = 0;
+	loadScreen.addEventListener('transitionend', () => loadscreen.remove());
     }
     everysecond() {
 
