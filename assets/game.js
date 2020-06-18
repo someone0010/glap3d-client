@@ -630,7 +630,7 @@ class player {
                                         yawtext.innerText = "YAW: " + (f.rotation.y * (180 / Math.PI)).toFixed(2);
                                         rolltext.innerText = "ROLL: " + (f.rotation.z * (180 / Math.PI)).toFixed(2);
 
-                                        lastPlayerX = e.x, lastPlayerZ = e.z, lastPlayerY = e.y;
+                                        lastPlayerX = e.x / downscale, lastPlayerZ = e.z / downscale, lastPlayerY = e.y / downscale;
                                     }
                                 }
                             }
