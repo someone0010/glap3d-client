@@ -131,7 +131,7 @@ document.getElementById("join-button").querySelector("div").innerText = "Loading
 
 
 const downscale = 512;
-const detail = 192;
+const detail = 256;
 
 
 
