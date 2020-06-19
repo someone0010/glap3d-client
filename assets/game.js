@@ -441,7 +441,7 @@ class player {
         //
         document.addEventListener('mousemove', onMouseMove, false);
         document.addEventListener('pointerlockchange', onPointerlockChange, false);
-        const displacementsc = 0.1;
+        const displacementsc = -0.1;
         var sunL = new THREE.MeshStandardMaterial({
             map: textureArray[0],
             emissiveMap: textureArray[0],
