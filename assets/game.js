@@ -130,8 +130,8 @@ document.getElementById("join-button").querySelector("div").innerText = "Loading
 
 
 
-const downscale = 1024;
-const detail = 128;
+const downscale = 256;
+const detail = 192;
 
 
 
@@ -241,8 +241,6 @@ class player {
         });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(canvas)
-        renderer.shadowMap.enabled = true;
-        //renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         switch (settingsData["flt"].current) {
             case 0:
                 renderer.toneMapping = THREE.NoToneMapping;
@@ -550,19 +548,9 @@ class player {
         loadingText.innerHTML = "Finishing up world (6/12)"
         //
         var alight = new THREE.PointLight(0xffffff, 1, 0, 0);
-        alight.castShadow = true;
-        alight.shadow.camera.near = 0.1;
-        alight.shadow.camera.far = 100000;
         planets.forEach((e, i) => {
             scene.add(e);
-            if (e != sunM) {
-            e.castShadow = true;
-            e.receiveShadow = true;
-            }
         })
-        alight.shadow.mapSize.width = 8192;
-                    alight.shadow.mapSize.height = 8192;
-        alight.shadowCameraVisible = true;
         scene.add(alight);
 
         var skySphereG = new THREE.SphereBufferGeometry(160000 / downscale, 256, 256);
@@ -675,9 +663,6 @@ class player {
                     }
                     var mesh = new THREE.Mesh(geometry, material);
                     var pl = new THREE.PointLight(0xfa0000, 1, 50/downscale);
-                    pl.castShadow = true;
-                    mesh.castShadow = true;
-                    mesh.receiveShadow = true;
                     mesh.add(pl);
 
 
