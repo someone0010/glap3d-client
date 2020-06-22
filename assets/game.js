@@ -582,6 +582,17 @@ class player {
         //
         loadingText.innerHTML = "Keyboard events (8/12)"
         //
+        var UISphere = new THREE.SphereBufferGeometry(5, 32, 32);
+        var UICanvas = document.createElement("canvas");
+        var UITexture = new THREE.CanvasTexture(UICanvas);
+        var UIMaterial = new THREE.MeshBasicMaterial({map: UITexture});
+        var UIMesh = new THREE.Mesh(UISphere, UIMaterial);
+        scene.add(UIMesh);
+        
+        window.ucanvas = UICanvas;
+        winddow.utexture = UITexture;
+        
+        
         document.addEventListener("keydown", function (e) {
             if (activekeys[e.keyCode] == true || !isLocked) return;
             activekeys[e.keyCode] = true;
