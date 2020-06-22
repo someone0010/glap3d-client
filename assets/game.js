@@ -582,16 +582,6 @@ class player {
         //
         loadingText.innerHTML = "Keyboard events (8/12)"
         //
-        var UISphere = new THREE.SphereBufferGeometry(5, 32, 32);
-        var UICanvas = document.createElement("canvas");
-        var UITexture = new THREE.CanvasTexture(UICanvas);
-        var UIMaterial = new THREE.MeshBasicMaterial({map: UITexture});
-        var UIMesh = new THREE.Mesh(UISphere, UIMaterial);
-       
-        
-        window.ucanvas = UICanvas;
-        winddow.utexture = UITexture;
-        
         
         document.addEventListener("keydown", function (e) {
             if (activekeys[e.keyCode] == true || !isLocked) return;
@@ -684,7 +674,6 @@ class player {
                     }
                     mesh.rotation.order = "YXZ";
                     scene.add(mesh);
-                    scene.add(UIMesh);
                     break;
                 case 3:
                     log("<span color='gold'>" + json[1].n + " joined the game</span>");
@@ -808,8 +797,6 @@ class player {
                 camera.position.x = Math.sin(euler.y) * (Math.sin(euler.x + PI_2)) * (zoomValue / downscale) + lastPlayerX;
                 camera.position.z = Math.cos(euler.y) * (Math.sin(euler.x + PI_2)) * (zoomValue / downscale) + lastPlayerZ;
                 camera.position.y = -Math.sin(euler.x) * (zoomValue / downscale) + lastPlayerY;
-                UIMesh.position.copy(camera.position);
-                UIMesh.rotation.copy(camera.rotation);
             }
             composer.render();
             fps++;
