@@ -301,7 +301,7 @@ class player {
         }
 
         //
-        loadingText.innerHTML = "Loading assets (this can take a while) (3/12)"
+        loadingText.innerHTML = "Loading assets (this can take a while) (3/12) <div id=\"loadingpercent\"></div>"
         //
 
         function getURLByQuality(base, quality) {
@@ -316,8 +316,11 @@ class player {
                     return base + "_ultra.png";
             }
         }
-
-        var TLoader = new THREE.TextureLoader();
+        var LoadingMgr = new THREE.LoadingManager();
+        var TLoader = new THREE.TextureLoader(LoadingMgr);
+        LoadingMgr.onProgress = function(item, loaded, total) {
+            document.getElementById("loadingpercent").innerText = ((loaded / total * 100).toFixed(1)) + "%"
+        }
         var allPromises = [];
         var dataTextureArray = [
             getURLByQuality("assets/sun/sun", settingsData["gq"].current),
@@ -381,6 +384,8 @@ class player {
             }));
 
         });
+        
+        
 
         await Promise.all(allPromises)
             .then(function (arrayOfMaterials) {
@@ -725,9 +730,7 @@ class player {
         }
         var composer = new POSTPROCESSING.EffectComposer(renderer);
         var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
-        composer.addPass(renderPass);
-        var normal = new POSTPROCESSING.NormalPass(scene, camera);
-
+        
 
         if (settingsData["bl"].current) {
             var blme = new POSTPROCESSING.BloomEffect({
@@ -743,6 +746,8 @@ class player {
             composer.addPass(new POSTPROCESSING.EffectPass(camera, godraysEffect));
         }
         // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
+        composer.addPass(renderPass);
+        var normal = new POSTPROCESSING.NormalPass(scene, camera);
         composer.addPass(normal);
         if ( /*settingsData["ssao"].current*/ true) {
             const ssaoEffect = new POSTPROCESSING.SSAOEffect(camera, normal.renderTarget.texture, {
