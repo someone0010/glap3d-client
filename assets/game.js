@@ -796,6 +796,12 @@ class player {
         //
         loadingText.innerHTML = "Init Scene (11/12)"
         //
+        function clamp(num, min, max) {
+  return num <= min ? min : num >= max ? max : num;
+}
+        document.addEventListener("wheel", event => {
+            zoomValue = clamp(zoomValue + (event.deltaY / 100), 50, 1000);
+        })
         function animate() {
 
 
