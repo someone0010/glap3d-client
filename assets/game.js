@@ -319,7 +319,7 @@ class player {
         var LoadingMgr = new THREE.LoadingManager();
         var TLoader = new THREE.TextureLoader(LoadingMgr);
         LoadingMgr.onProgress = function(item, loaded, total) {
-            document.getElementById("loadingpercent").innerText = ((loaded / total * 100).toFixed(1)) + "%"
+            try{document.getElementById("loadingpercent").innerText = ((loaded / total * 100).toFixed(1)) + "%"}catch(){}
         }
         var allPromises = [];
         var dataTextureArray = [
@@ -730,7 +730,8 @@ class player {
         }
         var composer = new POSTPROCESSING.EffectComposer(renderer);
         var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
-        
+        var normal = new POSTPROCESSING.NormalPass(scene, camera);
+        composer.addPass(normal);
 
         if (settingsData["bl"].current) {
             var blme = new POSTPROCESSING.BloomEffect({
@@ -747,8 +748,7 @@ class player {
         }
         // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
         composer.addPass(renderPass);
-        var normal = new POSTPROCESSING.NormalPass(scene, camera);
-        composer.addPass(normal);
+        
         if ( /*settingsData["ssao"].current*/ true) {
             const ssaoEffect = new POSTPROCESSING.SSAOEffect(camera, normal.renderTarget.texture, {
                 blendFunction: POSTPROCESSING.BlendFunction.MULTIPLY,
