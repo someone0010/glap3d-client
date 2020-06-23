@@ -1,0 +1,14 @@
+{
+	"name": "Glap3D.ga",
+	"short_name": "Glap3D",
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#320a8a",
+	"background_color": "#320a8a",
+	"description": "Glap.io in 3D",
+	"icons": [{
+	  "src": "/appletouchicon.png",
+	  "sizes": "192x192",
+	  "type": "image/png"
+	}]
+  }
