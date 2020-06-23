@@ -319,7 +319,7 @@ class player {
         var LoadingMgr = new THREE.LoadingManager();
         var TLoader = new THREE.TextureLoader(LoadingMgr);
         LoadingMgr.onProgress = function(item, loaded, total) {
-            try{document.getElementById("loadingpercent").innerText = ((loaded / total * 100).toFixed(1)) + "%"}catch(){}
+            try{document.getElementById("loadingpercent").innerText = ((loaded / total * 100).toFixed(1)) + "%"}catch{}
         }
         var allPromises = [];
         var dataTextureArray = [
