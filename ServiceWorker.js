@@ -10,7 +10,7 @@ self.addEventListener('install', (event) => {
 });
 
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', async (event) => {
 	event.waitUntil((async () => {
 		console.log('Service Worker activated');
 	})());
