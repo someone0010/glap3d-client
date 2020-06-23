@@ -730,6 +730,7 @@ class player {
         }
         var composer = new POSTPROCESSING.EffectComposer(renderer);
         var renderPass = new POSTPROCESSING.RenderPass(scene, camera);
+        composer.addPass(renderPass);
         var normal = new POSTPROCESSING.NormalPass(scene, camera);
         composer.addPass(normal);
 
@@ -747,7 +748,7 @@ class player {
             composer.addPass(new POSTPROCESSING.EffectPass(camera, godraysEffect));
         }
         // composer.addPass(new POSTPROCESSING.EffectPass(camera, new POSTPROCESSING.SSAOEffect(camera)));
-        composer.addPass(renderPass);
+        
         
         if ( /*settingsData["ssao"].current*/ true) {
             const ssaoEffect = new POSTPROCESSING.SSAOEffect(camera, normal.renderTarget.texture, {
