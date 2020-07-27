@@ -743,7 +743,7 @@ class player {
             composer.addPass(new POSTPROCESSING.EffectPass(camera, blme));
         }
         if (settingsData["gd"].current) {
-            let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM);
+            let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, sunM, {samples: 32, density: 0.5, weight: 0.3});
             godraysEffect.renderToScreen = true;
             composer.addPass(new POSTPROCESSING.EffectPass(camera, godraysEffect));
         }
